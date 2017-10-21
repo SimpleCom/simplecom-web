@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UploaderService} from "./uploader.service";
 import {FormBuilder, Validators} from "@angular/forms";
+import {ToastsManager} from "ng2-toastr";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'page-uploader',
@@ -13,15 +15,26 @@ export class UploaderComponent implements OnInit {
     file: ['', Validators.required],
   });
 
-  public file: string = '';
+  public filePath: string = '';
 
-  constructor(private _uploaderService: UploaderService, private fb: FormBuilder) {}
+  constructor(private _uploaderService: UploaderService, private fb: FormBuilder, private _toast: ToastsManager) {}
 
   ngOnInit(): void { }
 
-  UploadFile(event) {
-    this.file = event.target.value;
-    this._uploaderService.UploadFile(event)
+  ChangeFile(event) {
+    if (!environment.constants.acceptedImageTypes.filter(type => type === event.target.files[0].type).length) {
+      this.filePath = '';
+      this._uploaderService.files = null;
+      this._toast.error('Incorrect image type');
+      return;
+    }
+    this.filePath = event.target.value;
+    this._uploaderService.files = event.target.files;
+    console.log(event.target.files);
+  }
+
+  UploadFile() {
+    this._uploaderService.UploadFile()
       .then(res => {
         console.log(res);
       }).catch(err => {

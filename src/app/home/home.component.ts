@@ -6,6 +6,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { HomeService } from './home.service';
 
 import { IList } from '../../interfaces/list.interface';
+import {AuthService} from "../../common/auth.service";
+import {IJWT} from "../../interfaces/jwt.interface";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,12 @@ import { IList } from '../../interfaces/list.interface';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private route: ActivatedRoute, private homeService: HomeService) {}
+  public jwt: IJWT;
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private route: ActivatedRoute, private homeService: HomeService, private _auth: AuthService) {
+    this._auth.user.subscribe((user: IJWT) => {
+      this.jwt = user;
+    });
+  }
 
   private lists: IList;
 

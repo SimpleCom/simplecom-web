@@ -1,13 +1,12 @@
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
-  <form [formGroup]="uploaderForm" (ngSubmit)="saveNewLogo()">
+  <form [formGroup]="uploaderForm" (ngSubmit)="UploadFile()">
     <div class="form-group">
       <label class="btn btn-secondary">
-        Upload <input (change)="UploadFile($event)" formControlName="file" type="file" class="inputfile">
+        Upload <input (change)="ChangeFile($event)" formControlName="file" type="file" class="inputfile">
       </label>
 
-      {{ file }}
+      <small>{{ filePath }}</small>
     </div>
-
-    <button type="button" class="btn btn-primary">Submit</button>
+    <button [disabled]="!filePath" type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

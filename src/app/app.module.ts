@@ -31,7 +31,6 @@ import { HttpModule } from "@angular/http";
 import { HomeService } from "./home/home.service";
 import { LoginService } from "./login/login.service";
 import { RegisterService } from "./register/register.service";
-import { LogoService } from "./logo/logo.service";
 import {UploaderService} from "./uploader/uploader.service";
 
 @NgModule({
@@ -67,7 +66,6 @@ import {UploaderService} from "./uploader/uploader.service";
     HomeService,
     LoginService,
     RegisterService,
-    LogoService,
     UploaderService,
   ],
   bootstrap: [ AppComponent ]

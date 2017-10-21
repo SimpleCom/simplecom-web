@@ -4,10 +4,11 @@ import {environment} from "../../environments/environment";
 
 @Injectable()
 export class UploaderService {
+  public files: FileList;
   constructor(private _http: RestService) {}
 
-  UploadFile(event: any): Promise<any> {
-    const fileList: FileList = event.target.files;
+  UploadFile(): Promise<any> {
+    const fileList: FileList = this.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
       const formData: FormData = new FormData();
