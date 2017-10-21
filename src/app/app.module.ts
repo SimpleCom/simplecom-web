@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoComponent } from './logo/logo.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './404/404.component';
+import {UploaderComponent} from "./uploader/uploader.component";
 
 import { NavButtonsComponent } from './nav-buttons/nav-buttons.component';
 
@@ -28,6 +29,7 @@ import { HomeService } from "./home/home.service";
 import { LoginService } from "./login/login.service";
 import { RegisterService } from "./register/register.service";
 import { LogoService } from "./logo/logo.service";
+import {UploaderService} from "./uploader/uploader.service";
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { LogoService } from "./logo/logo.service";
     RegisterComponent,
     NotFoundComponent,
     NavButtonsComponent,
+    UploaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { LogoService } from "./logo/logo.service";
     LoginService,
     RegisterService,
     LogoService,
+    UploaderService,
   ],
   bootstrap: [ AppComponent ]
 })
