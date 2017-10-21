@@ -13,6 +13,6 @@ export class LoginService {
    * @returns {Promise<any>}
    */
   Login(user: IUser): Promise<any> {
-    return this._http.post(`${ environment.constants.apiUrl }user/login`, user);
+    return this._http.post(`${environment.constants.apiUrl}/user/login`, user);
   }
 }

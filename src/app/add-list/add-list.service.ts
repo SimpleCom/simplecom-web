@@ -19,6 +19,6 @@ export class AddListService {
       "name": listName
     }
 
-    return this._http.post(`${ environment.constants.apiUrl }lists`, body);
+    return this._http.post(`${ environment.constants.apiUrl }/lists`, body);
   }
 }

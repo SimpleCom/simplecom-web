@@ -13,6 +13,6 @@ export class RegisterService {
    * @returns {Promise<any>}
    */
   Register(user: IUser): Promise<any> {
-    return this._http.post(`${ environment.constants.apiUrl }user/register`, user);
+    return this._http.post(`${ environment.constants.apiUrl }/user/register`, user);
   }
 }
