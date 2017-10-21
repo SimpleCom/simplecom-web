@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { LoginService } from './login.service';
 import { AuthService } from '../../common/auth.service';
@@ -11,7 +13,9 @@ import { AuthService } from '../../common/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private router: Router, private fb: FormBuilder, private loginService: LoginService, private authService: AuthService) {}
+  constructor(private toastr: ToastsManager, private router: Router, private fb: FormBuilder, private loginService: LoginService, private authService: AuthService) {
+    // this.toastr.setRootViewContainerRef(vcr);
+  }
 
   public loginForm = this.fb.group({
     username: ['', Validators.required],
@@ -20,7 +24,6 @@ export class LoginComponent {
   });
 
   private loggingIn: boolean = false;
-  private errorMesssage: string = '';
 
   login() {
     this.loggingIn = true;
@@ -34,13 +37,14 @@ export class LoginComponent {
     };
 
     this.loginService.Login(user)
-      .then((response) => {
+      .then((response) =>   {
         if (response) {
+          this.toastr.success('Login successful', 'Success!');
           this.authService.setToken(response.jwt);
           console.log(this.authService.getToken());
           this.router.navigate(['/home']);
         } else {
-          this.errorMesssage = 'An error occured';
+          this.toastr.error('Login unsuccessful', 'Error!');
         }
 
         this.loggingIn = false;
