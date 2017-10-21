@@ -6,9 +6,9 @@ import { RouteModule } from './route.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '../common/auth.service';
 import { MainService } from './main.service';
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard } from '../common/auth-guard.service';
 
 @NgModule({
   declarations: [
