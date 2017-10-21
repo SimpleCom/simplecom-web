@@ -42,7 +42,8 @@ export class RegisterComponent {
         }
 
         this.registering = false;
-      }
-    );
+      }).catch(e => {
+        alert(e);
+      });
   }
 }
