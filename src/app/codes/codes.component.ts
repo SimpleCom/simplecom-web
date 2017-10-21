@@ -16,8 +16,6 @@ export class CodesComponent implements OnInit {
   }
 
   showDropdown(){
-    this.dropdownDisplay=!this.dropdownDisplay;
-    console.log(this.dropdownDisplay);
-    console.log('here');
+    this.dropdownDisplay =! this.dropdownDisplay;
   }
 }

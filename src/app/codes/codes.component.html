@@ -1,28 +1,28 @@
-<h3>Set Codes</h3>
+<h1>Set Codes</h1>
 
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
-        <button routerLink="/home" class="btn btn-block btn-outline-dark">Home</button>
-        <button routerLink="/add" class="btn btn-block btn-outline-dark">Add List</button>
-        <button routerLink="/codes" class="btn btn-block btn-outline-dark">Set Codes</button>
-        <button routerLink="/logo" class="btn btn-block btn-outline-dark">Set Logo</button>
-        <button routerLink="/history" class="btn btn-block btn-outline-dark">History</button>
-        <hr>
-        <button routerLink="/login" class="btn btn-block btn-outline-dark">Logout</button>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
-        <button type="button" (click)="showDropdown()" class="btn btn-primary">
-            Enter Codes
-        </button>
-                <form *ngIf=dropdownDisplay class="form-horizontal">
-                    <div class="form-group">
-                        <label for="Secure Key">Secure Key</label>
-                        <input type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="Enter Secure Key" value="{{ secureKeyValue }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="Fake Key">Fake Key</label>
-                        <input type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="Enter Fake Key">
-                    </div>
-                </form>
-            </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+      <button routerLink="/home" class="btn btn-block btn-outline-dark">Home</button>
+      <button routerLink="/add" class="btn btn-block btn-outline-dark">Add List</button>
+      <button routerLink="/codes" class="btn btn-block btn-outline-dark">Set Codes</button>
+      <button routerLink="/logo" class="btn btn-block btn-outline-dark">Set Logo</button>
+      <button routerLink="/history" class="btn btn-block btn-outline-dark">History</button>
+      <hr>
+      <button routerLink="/login" class="btn btn-block btn-outline-dark">Logout</button>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
+    <button type="button" (click)="showDropdown()" class="btn btn-primary">Enter Codes</button>
+
+    <form *ngIf=dropdownDisplay class="form-horizontal">
+      <div class="form-group">
+        <label for="Secure Key">Secure Key</label>
+        <input type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="Enter Secure Key" value="{{ secureKeyValue }}">
+      </div>
+      <div class="form-group">
+        <label for="Fake Key">Fake Key</label>
+        <input type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="Enter Fake Key">
+      </div>
+    </form>
+  </div>
 </div>

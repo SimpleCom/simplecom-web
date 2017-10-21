@@ -19,5 +19,4 @@ export class AddListService {
       return this._http.post(`${environment.constants.apiUrl}/list`, {listName});
     }
   }
-
 }

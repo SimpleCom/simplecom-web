@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {AddListService} from "./add-list.service";
+import { FormBuilder, Validators } from "@angular/forms";
+import { AddListService } from "./add-list.service";
 
 @Component({
   selector: 'app-list',

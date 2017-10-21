@@ -12,14 +12,16 @@
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
-    <form [formGroup]="listForm" (ngSubmit)="saveNewList()">
+    <form [formGroup]="logoForm" (ngSubmit)="saveNewLogo()">
       <div class="form-group">
-        <label for="username">New list name</label>
-        <input formControlName="name" type="text" class="form-control" id="username">
+        <label class="btn btn-secondary">
+          Upload <input (change)="logoChanged($event)" formControlName="file" type="file" class="inputfile">
+        </label>
+
+        {{ file }}
       </div>
 
-      <button (click)="saveNewList()" type="button" class="btn btn-primary">Add</button>
+      <button type="button" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </div>
-
