@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 import { CodesService } from './codes.service';
 
 @Component({
@@ -10,7 +13,7 @@ import { CodesService } from './codes.service';
 })
 
 export class CodesComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private codesService: CodesService) {}
+  constructor(private toastr: ToastsManager, private route: ActivatedRoute, private codesService: CodesService) {}
   private dropdownDisplay: boolean = false;
   private secureKeyValue: string = "Enter Secure Key";
   private fakeKeyValue: string = "Enter Fake Key";
@@ -45,6 +48,21 @@ export class CodesComponent implements OnInit {
       "secure": this.secureKeyValue,
       "public": this.fakeKeyValue
     };
+    
+    this.codesService.AddNewCodes(codes)
+    .then((response) =>{
+
+      if (response) {
+        this.toastr.success('Codes Set!', 'Success!');
+      }
+
+      else{
+        this.toastr.error('Codes were not set.', 'Error!');
+      }
+    }
+  
+  );
+
   }
 
   deleteCodes(){  

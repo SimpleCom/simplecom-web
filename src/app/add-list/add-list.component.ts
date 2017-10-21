@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 import { AddListService } from "./add-list.service";
 import { AuthService } from '../../common/auth.service';
 
@@ -12,7 +14,7 @@ import * as jwt from 'jwt-decode';
   styleUrls: ['./add-list.component.css']
 })
 export class AddListComponent implements OnInit {
-  constructor(private fb: FormBuilder, private _listService: AddListService, private authService: AuthService) {}
+  constructor(private toastr: ToastsManager, private fb: FormBuilder, private _listService: AddListService, private authService: AuthService) {}
 
   public listForm = this.fb.group({
     name: ['', Validators.required],
@@ -30,8 +32,9 @@ export class AddListComponent implements OnInit {
       .then(response => {
         this.addingList = false;
         this.listForm.controls.name.patchValue('');
+        this.toastr.success('List successfully created!', 'Success!')
       }).catch(e => {
-        alert(e);
+        this.toastr.error('List was not created.', 'Error!');
       });
   }
 }
