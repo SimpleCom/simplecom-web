@@ -1,6 +1,24 @@
-<h1>List works</h1>
+<h1>Add a List</h1>
 
-<form [formGroup]="listForm" (ngSubmit)="saveNewList()">
-  <input formControlName="name" placeholder="New List Name" />
-  <button type="submit">Submit</button>
-</form>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+    <button routerLink="/add" class="btn btn-block btn-outline-dark">Add List</button>
+    <button routerLink="/codes" class="btn btn-block btn-outline-dark">Set Codes</button>
+    <button routerLink="/logo" class="btn btn-block btn-outline-dark">Set Logo</button>
+    <button routerLink="/history" class="btn btn-block btn-outline-dark">History</button>
+    <hr>
+    <button routerLink="/login" class="btn btn-block btn-outline-dark">Logout</button>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
+    <form [formGroup]="listForm" (ngSubmit)="saveNewList()">
+      <div class="form-group">
+        <label for="username">New list name</label>
+        <input formControlName="name" type="text" class="form-control" id="username">
+      </div>
+
+      <button type="button" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+</div>
+
