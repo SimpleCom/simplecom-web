@@ -9,7 +9,15 @@ import { ActivatedRoute } from '@angular/router';
 export class CodesComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
+  private dropdownDisplay: boolean = false;
+
   ngOnInit() {
     // console.log(this.route.snapshot.params['id']);
+  }
+
+  showDropdown(){
+    this.dropdownDisplay=!this.dropdownDisplay;
+    console.log(this.dropdownDisplay);
+    console.log('here');
   }
 }
