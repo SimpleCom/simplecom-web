@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  isTest: true,
+  isTest: false,
   constants: {
-    apiUrl: 'http://api.simplecom.me/'
+    apiUrl: 'http://api.simplecom.me'
   }
 };
