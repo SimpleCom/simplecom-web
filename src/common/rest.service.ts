@@ -88,6 +88,20 @@ export class RestService {
   }
 
   /**
+   * Abstracts HTTP DELETE
+   * @param url {string}
+   * @returns {Promise<Observable<any>|T>}
+   */
+  delete2(url: string): Promise<any> {
+    return this._http.delete(url, this.buildOptions2())
+      .map(res => res.json())
+      .toPromise()
+      .catch(err => {
+        this.handleError(err);
+      });
+  }
+
+  /**
    * Abstracts HTTP PUT
    * @param url {string}
    * @param body {any}
@@ -95,6 +109,21 @@ export class RestService {
    */
   put(url: string, body: any): Promise<any> {
     return this._http.put(url, body, this.buildOptions())
+      .map(res => res.json())
+      .toPromise()
+      .catch(err => {
+        this.handleError(err);
+      });
+  }
+
+  /**
+   * Abstracts HTTP PUT
+   * @param url {string}
+   * @param body {any}
+   * @returns {Promise<Observable<any>|T>}
+   */
+  put2(url: string, body: any): Promise<any> {
+    return this._http.put(url, body, this.buildOptions2())
       .map(res => res.json())
       .toPromise()
       .catch(err => {

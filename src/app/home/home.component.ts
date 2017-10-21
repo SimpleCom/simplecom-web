@@ -19,4 +19,13 @@ export class HomeComponent implements OnInit {
     this.homeService.GetAllLists()
       .then((response) => this.lists = response);
   }
+
+  deleteList(list) {
+    this.homeService.DeleteList(list.id)
+      .then((response) => {
+        console.log(response);
+        this.homeService.GetAllLists()
+          .then((response) => this.lists = response);
+      });
+  }
 }

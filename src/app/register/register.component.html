@@ -5,17 +5,17 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()">
   <div class="form-group">
     <label for="username">Username</label>
-    <input formControlName="username" type="text" class="form-control" id="username">
+    <input formControlName="username" type="text" class="form-control" id="username" maxlength="64">
   </div>
 
   <div class="form-group">
     <label for="password">Password</label>
-    <input formControlName="password" type="password" class="form-control" id="password">
+    <input formControlName="password" type="password" class="form-control" id="password" maxlength="64">
   </div>
 
   <div class="form-group">
     <label for="re-password">Re-Type Password</label>
-    <input formControlName="repassword" type="password" class="form-control" id="repassword">
+    <input formControlName="repassword" type="password" class="form-control" id="re-password" maxlength="64">
   </div>
 
 <!--   <div class="form-group">
@@ -24,11 +24,12 @@
   </div>
  -->
 
-  <button *ngIf="!registering" (click)="register()" type="button" class="btn btn-primary" [disabled]="(!registerForm.value.username || !registerForm.value.password || !registerForm.value.repassword) || (registerForm.value.password !== registerForm.value.repassword)">Register</button>
+  <button *ngIf="!registering" (click)="register()" type="button" class="btn btn-primary" 
+    [disabled]="(!registerForm.value.username || !registerForm.value.password || !registerForm.value.repassword) || 
+    (registerForm.value.password !== registerForm.value.repassword)">Register
+  </button>
 
   <button *ngIf="registering" (click)="register()" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
-
- <button (click)="checkValues()" type="button" class="btn btn-primary">Test</button>
 
   <div class="form-group">
     <small>Already have an account? <a routerLink="/login">Click here</a></small>

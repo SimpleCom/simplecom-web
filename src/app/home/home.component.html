@@ -8,7 +8,7 @@
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
     <ul class="list-group">
       <li *ngFor="let list of lists" class="list-group-item">
-        <h3>{{ list.name }}</h3>
+        <h3>{{ list.name }} <button (click)="deleteList(list)" class="btn btn-danger btn-lg right"><i class="fa fa-trash-o"></i></button></h3>
 
         <!-- <p *ngFor="let person of list.people">{{ person.name }}
           <button class="btn btn-danger right"><i class="fa fa-trash-o"></i></button>

@@ -19,8 +19,6 @@ export class AddListService {
       "name": listName
     }
 
-    console.log('this is listName', listName);
-
-    return this._http.post2(`${ environment.constants.apiUrl }list`, body);
+    return this._http.post2(`${ environment.constants.apiUrl }lists`, body);
   }
 }

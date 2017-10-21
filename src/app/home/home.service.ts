@@ -12,7 +12,7 @@ export class HomeService {
    * @returns {Promise<any>}
    */
   GetAllLists(): Promise<any> {
-    return this._http.get2(`${ environment.constants.apiUrl}list`);
+    return this._http.get2(`${ environment.constants.apiUrl}lists`);
   }
 
   /**
@@ -21,8 +21,15 @@ export class HomeService {
    * @returns {Promise<any>}
    */
   DeleteList(listId: number): Promise<any> {
-    return this._http.delete(`${environment.constants.apiUrl}/${listId}`);
+    return this._http.delete2(`${environment.constants.apiUrl}lists/${listId}`);
   }
+
+
+
+
+
+
+
 
   /**
    * Edits list name given a list ID

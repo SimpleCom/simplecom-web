@@ -18,14 +18,20 @@ export class AddListComponent implements OnInit {
     name: ['', Validators.required],
   });
 
+  public addingList: boolean = false;
+
   ngOnInit() {
   }
 
   saveNewList(): void {
+    this.addingList = true;
+
     this._listService.AddNewList(this.listForm.value.name)
       .then(response => {
-        console.log(response);
+        this.addingList = false;
         this.listForm.controls.name.patchValue('');
+      }).catch(e => {
+        alert(e);
       });
   }
 }
