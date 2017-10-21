@@ -82,7 +82,7 @@ export class RestService {
     const options = new RequestOptions();
     options.headers = new Headers();
     options.headers.append('Accept', 'application/json');
-    options.headers.append('Authorization', 'Bearer ' + this.token);
+    options.headers.append('Authorization', '' + this.token);
     // console.log('this is token from bo2', 'Bearer ' + this.token);
     return options;
   }

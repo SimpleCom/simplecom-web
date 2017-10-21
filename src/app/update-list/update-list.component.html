@@ -1,0 +1,25 @@
+<h1>Update a List</h1>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+    <nav-buttons></nav-buttons> 
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
+    <form [formGroup]="listForm" (ngSubmit)="saveNewContact()">
+      <div class="form-group">
+        <label for="username">New contact name</label>
+        <input formControlName="name" type="text" class="form-control" id="username" maxlength="96">
+      </div>
+
+      <div class="form-group">
+        <label for="username">New contact email</label>
+        <input formControlName="email" type="email" class="form-control" id="email" maxlength="96">
+      </div>
+
+      <button (click)="saveNewContact()" type="submit" class="btn btn-primary" [disabled]="!listForm.value.name || !listForm.value.email">Add Contact</button>
+      <!-- <button *ngIf="!addingList" (click)="saveNewContact()" type="button" class="btn btn-primary" [disabled]="!listForm.value.name">Add</button> -->
+      <!-- <button *ngIf="addingList" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button> -->
+    </form>
+  </div>
+</div>

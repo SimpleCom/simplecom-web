@@ -1,19 +1,26 @@
 import {Injectable} from "@angular/core";
 import {RestService} from "../../common/rest.service";
 import {environment} from "../../environments/environment";
+import {IJWT} from "../../interfaces/jwt.interface";
+import {AuthService} from "../../common/auth.service";
 
 @Injectable()
 export class UploaderService {
-  constructor(private _http: RestService) {}
+  public files: FileList;
+  public user: IJWT;
+  constructor(private _http: RestService, private _authService: AuthService) {
+    this._authService.user.subscribe((user: IJWT) => {
+      this.user = user;
+    });
+  }
 
-  UploadFile(event: any): Promise<any> {
-    const fileList: FileList = event.target.files;
+  UploadFile(): Promise<any> {
+    const fileList: FileList = this.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
       const formData: FormData = new FormData();
       formData.append('uploadFile', file, file.name);
-      formData.append('EntityOid', '22');
-      return this._http.post(`${environment.constants.apiUrl}/logo/upload`, formData);
+      return this._http.post(`${environment.constants.apiUrl}/user/${this.user.id}/logo`, formData);
     }
   }
 }
