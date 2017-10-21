@@ -15,8 +15,8 @@ import { CodesService } from './codes.service';
 export class CodesComponent implements OnInit {
   constructor(private toastr: ToastsManager, private route: ActivatedRoute, private codesService: CodesService) {}
   private dropdownDisplay: boolean = false;
-  private secureKeyValue: string = "Enter Secure Key";
-  private fakeKeyValue: string = "Enter Fake Key";
+  private secureKeyValue: string = "";
+  private fakeKeyValue: string = "";
 
   ngOnInit() {
     // console.log(this.route.snapshot.params['id']);
