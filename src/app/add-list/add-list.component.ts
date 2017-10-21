@@ -17,7 +17,7 @@ export class AddListComponent {
 
   saveNewList(): void {
     console.log(this.listForm.value.name);
-    this._listService.saveNewList(this.listForm.value.name)
+    this._listService.AddNewList(this.listForm.value.name)
       .then(res => {
         console.log(res);
         this.listForm.controls.name.patchValue('');
