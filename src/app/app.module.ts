@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouteModule } from './route.module';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { AuthService } from '../common/auth.service';
@@ -13,6 +14,7 @@ import { AuthGuard } from '../common/auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     HomeComponent
   ],
   imports: [
