@@ -1,0 +1,7 @@
+<h1>List works</h1>
+
+<form [formGroup]="listForm" (ngSubmit)="saveNewList()">
+  <input formControlName="name" placeholder="New List Name" />
+  <button type="submit">Submit</button>
+</form>
+
