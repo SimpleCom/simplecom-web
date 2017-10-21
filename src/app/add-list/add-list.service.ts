@@ -14,7 +14,7 @@ export class AddListService {
    */
   AddNewList(listName: string): Promise<any> {
     if (environment.isTest) {
-      return this._http.get('/assets/json/addnewlist.json');
+      return this._http.get('/assets/json/AddNewList.json');
     } else {
       return this._http.post(`${environment.constants.apiUrl}/list`, {listName});
     }
