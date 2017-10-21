@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -27,6 +27,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.homeService.GetAllLists()
       .then((response) => this.lists = response);
+  }
+
+  viewListDetails(list) {
+    this.router.navigate(['/update/', list.id]);
   }
 
   deleteList(list) {

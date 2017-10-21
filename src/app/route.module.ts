@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
 import { AddListComponent } from './add-list/add-list.component';
+import { UpdateListComponent } from './update-list/update-list.component';
 import { CodesComponent } from './codes/codes.component';
 import { HistoryComponent } from './history/history.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logo', canActivate: [ AuthGuard ], component: LogoComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'update/:id', canActivate: [ AuthGuard ], component: UpdateListComponent },
 
   { path: '**', redirectTo: '404' },
   { path: '404', component: NotFoundComponent },
