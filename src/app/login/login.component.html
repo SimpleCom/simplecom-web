@@ -1,3 +1,5 @@
+<h1>Login</h1>
+
 <form>
   <div class="form-group">
     <label for="username">Username</label>
@@ -9,5 +11,9 @@
     <input type="text" class="form-control" id="password">
   </div>
 
-  <button (click)="something()" type="button" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-primary">Login</button>
+
+  <div class="form-group">
+    <small>Don't have an account? <a routerLink="/register">Click here</a></small>
+  </div>
 </form>

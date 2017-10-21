@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   constants: {
-    apiUrl: 'http://foobar'
+    apiUrl: 'http://localhost:4200'
   }
 };
