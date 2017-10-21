@@ -7,12 +7,17 @@ export class AddListService {
 
   constructor(private _http: RestService) {}
 
-  saveNewList(listName: string): Promise<any> {
-    return this._http.post(`${environment.constants.apiUrl}/list`, {listName});
-  }
-
-  getList(): Promise<any> {
-    return this._http.get(`${environment.constants.apiUrl}/list`);
+  /**
+   * Add new list given a list name
+   * @param {string} listName
+   * @returns {Promise<any>}
+   */
+  AddNewList(listName: string): Promise<any> {
+    if (environment.isTest) {
+      return this._http.get('/assets/json/addnewlist.json');
+    } else {
+      return this._http.post(`${environment.constants.apiUrl}/list`, {listName});
+    }
   }
 
 }

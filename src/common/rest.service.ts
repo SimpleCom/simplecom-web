@@ -45,6 +45,35 @@ export class RestService {
   }
 
   /**
+   * Abstracts HTTP DELETE
+   * @param url {string}
+   * @returns {Promise<Observable<any>|T>}
+   */
+  delete(url: string): Promise<any> {
+    return this._http.delete(url, this.buildOptions())
+      .map(res => res.json())
+      .toPromise()
+      .catch(err => {
+        this.handleError(err);
+      });
+  }
+
+  /**
+   * Abstracts HTTP PUT
+   * @param url {string}
+   * @param body {any}
+   * @returns {Promise<Observable<any>|T>}
+   */
+  put(url: string, body: any): Promise<any> {
+    return this._http.put(url, body, this.buildOptions())
+      .map(res => res.json())
+      .toPromise()
+      .catch(err => {
+        this.handleError(err);
+      });
+  }
+
+  /**
    * Lets use set build options with auth token header on abstracted HTTP calls
    * @returns {{headers: Headers}} {RequestOptionsArgs}
    */
