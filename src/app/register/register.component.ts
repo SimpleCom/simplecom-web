@@ -45,4 +45,13 @@ export class RegisterComponent {
       }
     );
   }
-}
+
+  checkValues(){
+    console.log(this.registerForm.value.username)
+    console.log(this.registerForm.value.password)
+    console.log(this.registerForm.value.repassword)
+    console.log(!this.registerForm.value.username || !this.registerForm.value.password || !this.registerForm.value.repassword)
+    console.log(this.registerForm.value.password !== this.registerForm.value.repassword)
+  }
+
+  }
