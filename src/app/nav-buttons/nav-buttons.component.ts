@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'nav-buttons',
+  templateUrl: './nav-buttons.component.html',
+  styleUrls: ['./nav-buttons.component.css']
 })
-export class LoginComponent {
+export class NavButtonsComponent {
   constructor(private router: Router) {}
 
-  login() {
+  register() {
     this.router.navigate(['/home']);
   }
 }
