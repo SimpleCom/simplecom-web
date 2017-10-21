@@ -11,21 +11,25 @@ export class JWTService {
    * @returns {boolean}
    */
   checkToken(): boolean {
-    if (localStorage.getItem('token')) {
-      this._authService.setToken(localStorage.getItem('token'));
-    } else {
+    if (!this._authService.getToken()) {
       return false;
-    }
-    if (this._authService.getToken() && this._authService.getToken() !== '') {
-      const token = this._authService.getToken().split('.')[1];
-      const parsedToken = JSON.parse(atob(token));
-      if (new Date(parsedToken.ExpirationTime).getTime() < new Date().getTime()) {
-        return false;
-      } else {
-        return true;
-      }
+    } else {
+      return true;
     }
 
-
+    // if (localStorage.getItem('token')) {
+    //   this._authService.setToken(localStorage.getItem('token'));
+    // } else {
+    //   return false;
+    // }
+    // if (this._authService.getToken() && this._authService.getToken() !== '') {
+    //   const token = this._authService.getToken().split('.')[1];
+    //   const parsedToken = JSON.parse(atob(token));
+    //   if (new Date(parsedToken.ExpirationTime).getTime() < new Date().getTime()) {
+    //     return false;
+    //   } else {
+    //     return true;
+    //   }
+    // }
   }
 }

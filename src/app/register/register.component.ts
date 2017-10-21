@@ -15,6 +15,7 @@ export class RegisterComponent {
   public registerForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
+    repassword: ['', Validators.required],
     // code: ['', Validators.required],
   });
 
@@ -35,7 +36,7 @@ export class RegisterComponent {
     this.registerService.Register(user)
       .then((response) => {
         if (!response[0].error) {
-          this.router.navigate['/login'];
+          this.router.navigate(['/login']);
         } else {
           this.errorMesssage = 'An error occured';
         }

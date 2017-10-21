@@ -1,5 +1,7 @@
 <h1>Login</h1>
 
+<h3 *ngIf="errorMesssage" class="text-danger">An error occured. Please try again later.</h3>
+
 <form [formGroup]="loginForm" (ngSubmit)="login()">
   <div class="form-group">
     <label for="username">Username</label>
@@ -8,10 +10,11 @@
 
   <div class="form-group">
     <label for="password">Password</label>
-    <input formControlName="password" type="text" class="form-control" id="password">
+    <input formControlName="password" type="password" class="form-control" id="password">
   </div>
 
-  <button (click)="login()" type="button" class="btn btn-primary">Login</button>
+  <button *ngIf="!loggingIn" (click)="login()" type="button" class="btn btn-primary" [disabled]="!this.loginForm.value.username || !this.loginForm.value.password">Login</button>
+  <button *ngIf="loggingIn" (click)="login()" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
 
   <div class="form-group">
     <small>Don't have an account? <a routerLink="/register">Click here</a></small>

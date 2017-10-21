@@ -1,28 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
+
 import { AddListService } from "./add-list.service";
+import { AuthService } from '../../common/auth.service';
+
+import * as jwt from 'jwt-decode';
 
 @Component({
   selector: 'app-list',
   templateUrl: './add-list.component.html',
   styleUrls: ['./add-list.component.css']
 })
-export class AddListComponent {
-  constructor(private fb: FormBuilder, private _listService: AddListService) {}
+export class AddListComponent implements OnInit {
+  constructor(private fb: FormBuilder, private _listService: AddListService, private authService: AuthService) {}
 
   public listForm = this.fb.group({
     name: ['', Validators.required],
   });
 
+  ngOnInit() {
+  }
+
   saveNewList(): void {
-    console.log(this.listForm.value.name);
     this._listService.AddNewList(this.listForm.value.name)
-      .then(res => {
-        console.log(res);
+      .then(response => {
+        console.log(response);
         this.listForm.controls.name.patchValue('');
-      }).catch(err => {
-        console.log(err);
-        this.listForm.controls.name.patchValue('');
-    });
+      });
   }
 }

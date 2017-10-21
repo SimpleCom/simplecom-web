@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { HomeService } from './home.service';
 
+import { IList } from '../../interfaces/list.interface';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,7 +13,10 @@ import { HomeService } from './home.service';
 export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private homeService: HomeService) {}
 
+  private lists: IList;
+
   ngOnInit() {
-    this.homeService.GetAllLists();
+    this.homeService.GetAllLists()
+      .then((response) => this.lists = response);
   }
 }

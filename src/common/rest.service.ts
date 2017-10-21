@@ -31,12 +31,41 @@ export class RestService {
   }
 
   /**
+   * Abstracts HTTP POST
+   * @param url {string}
+   * @param body {any}
+   * @returns {Promise<Observable<any>|T>}
+   */
+  post2(url: string, body: any): Promise<any> {
+    return this._http.post(url, body, this.buildOptions2())
+      .map(res => res.json())
+      .toPromise()
+      .catch(err => {
+        this.handleError(err);
+      });
+  }
+
+  /**
    * Abstracts HTTP GET
    * @param url {string}
    * @returns {Promise<Observable<any>|T>}
    */
   get(url: string): Promise<any> {
     return this._http.get(url, this.buildOptions())
+      .map(res => res.json())
+      .toPromise()
+      .catch(err => {
+        this.handleError(err);
+      });
+  }
+
+  /**
+   * Abstracts HTTP GET
+   * @param url {string}
+   * @returns {Promise<Observable<any>|T>}
+   */
+  get2(url: string): Promise<any> {
+    return this._http.get(url, this.buildOptions2())
       .map(res => res.json())
       .toPromise()
       .catch(err => {
@@ -82,11 +111,21 @@ export class RestService {
     options.headers = new Headers();
     options.headers.append('Accept', 'application/json');
     options.headers.append('Authorization', this.token);
+    console.log('this is token from bo1', this.token);
+    return options;
+  }
+
+  buildOptions2(): RequestOptionsArgs {
+    const options = new RequestOptions();
+    options.headers = new Headers();
+    options.headers.append('Accept', 'application/json');
+    options.headers.append('Authorization', 'Bearer ' + this.token);
+    console.log('this is token from bo2', 'Bearer ' + this.token);
     return options;
   }
 
   /**
-   * Error handking for these calls
+   * Error handling for these calls
    * @param error {any}
    * @returns {any}
    */

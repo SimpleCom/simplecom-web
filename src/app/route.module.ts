@@ -12,14 +12,16 @@ import { LogoComponent } from './logo/logo.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './404/404.component';
 
+import { AuthGuard } from '../common/auth-guard.service';
+
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'add', component: AddListComponent },
-  { path: 'codes', component: CodesComponent },
-  { path: 'history', component: HistoryComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'add', canActivate: [ AuthGuard ], component: AddListComponent },
+  { path: 'codes', canActivate: [ AuthGuard ], component: CodesComponent },
+  { path: 'history', canActivate: [ AuthGuard ], component: HistoryComponent },
+  { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'logo', component: LogoComponent },
+  { path: 'logo', canActivate: [ AuthGuard ], component: LogoComponent },
   { path: 'register', component: RegisterComponent },
 
   { path: '**', redirectTo: '404' },
@@ -40,7 +42,4 @@ const routes: Routes = [
 
 export class RouteModule { }
 
-// /user/login
-// uname | pass
-// /user/register
-// uname | pass
+// list name

@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {RestService} from "../../common/rest.service";
-import {environment} from "../../environments/environment";
-import {IListMember} from "../../interfaces/list-member.interface";
+import { Injectable } from "@angular/core";
+import { RestService } from "../../common/rest.service";
+import { environment } from "../../environments/environment";
+import { IListMember } from "../../interfaces/list-member.interface";
 
 @Injectable()
 export class HomeService {
@@ -12,7 +12,7 @@ export class HomeService {
    * @returns {Promise<any>}
    */
   GetAllLists(): Promise<any> {
-    return this._http.get(`${environment.constants.apiUrl}/list`);
+    return this._http.get2(`${ environment.constants.apiUrl}list`);
   }
 
   /**

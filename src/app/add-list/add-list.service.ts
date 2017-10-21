@@ -1,11 +1,13 @@
-import {Injectable} from "@angular/core";
-import {RestService} from "../../common/rest.service";
-import {environment} from "../../environments/environment";
+import { Injectable } from "@angular/core";
+import { RestService } from "../../common/rest.service";
+import { environment } from "../../environments/environment";
+
+import { AuthService } from '../../common/auth.service';
 
 @Injectable()
 export class AddListService {
 
-  constructor(private _http: RestService) {}
+  constructor(private _http: RestService, private authService: AuthService) {}
 
   /**
    * Add new list given a list name
@@ -13,10 +15,12 @@ export class AddListService {
    * @returns {Promise<any>}
    */
   AddNewList(listName: string): Promise<any> {
-    if (environment.isTest) {
-      return this._http.get('/assets/json/AddNewList.json');
-    } else {
-      return this._http.post(`${environment.constants.apiUrl}/list`, {listName});
+    const body = {
+      "name": listName
     }
+
+    console.log('this is listName', listName);
+
+    return this._http.post2(`${ environment.constants.apiUrl }list`, body);
   }
 }
