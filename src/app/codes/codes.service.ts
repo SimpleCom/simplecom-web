@@ -13,7 +13,11 @@ export class CodesService {
    * @returns {Promise<any>}
    */
   AddNewCodes(codes: ICodes): Promise<any> {
-    return this._http.post(`${environment.constants.apiUrl}/code`, {codes});
+    if (environment.isTest) {
+      return this._http.get('/assets/AddNewCodes.json');
+    } else {
+      return this._http.post(`${environment.constants.apiUrl}/code`, {codes});
+    }
   }
 
   /**
@@ -21,7 +25,11 @@ export class CodesService {
    * @returns {Promise<any>}
    */
   DeleteCodes(): Promise<any> {
-    return this._http.delete(`${environment.constants.apiUrl}/code`);
+    if (environment.isTest) {
+      return this._http.get('/assets/DeleteCodes.json');
+    } else {
+      return this._http.delete(`${environment.constants.apiUrl}/code`);
+    }
   }
 
   /**
@@ -30,6 +38,10 @@ export class CodesService {
    * @returns {Promise<any>}
    */
   EditCodes(codes: ICodes): Promise<any> {
-    return this._http.put(`${environment.constants.apiUrl}/code`, codes);
+    if (environment.isTest) {
+      return this._http.get('/assets/EditCodes.json');
+    } else {
+      return this._http.put(`${environment.constants.apiUrl}/code`, codes);
+    }
   }
 }
