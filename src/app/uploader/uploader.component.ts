@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UploaderService} from "./uploader.service";
 import {FormBuilder, Validators} from "@angular/forms";
 
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 @Component({
   selector: 'page-uploader',
   templateUrl: './uploader.component.html',
@@ -15,7 +17,7 @@ export class UploaderComponent implements OnInit {
 
   public file: string = '';
 
-  constructor(private _uploaderService: UploaderService, private fb: FormBuilder) {}
+  constructor(private toastr: ToastsManager, private _uploaderService: UploaderService, private fb: FormBuilder) {}
 
   ngOnInit(): void { }
 
@@ -23,9 +25,9 @@ export class UploaderComponent implements OnInit {
     this.file = event.target.value;
     this._uploaderService.UploadFile(event)
       .then(res => {
-        console.log(res);
+        this.toastr.success('Upload Succesful!', 'Success!');
       }).catch(err => {
-        console.log(err);
+        this.toastr.error('Upload Failed.', 'Error!');
       });
   }
 

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 import { RegisterService } from './register.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { RegisterService } from './register.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor(private router: Router, private fb: FormBuilder, private registerService: RegisterService) {}
+  constructor(private toastr: ToastsManager, private router: Router, private fb: FormBuilder, private registerService: RegisterService) {}
 
   public registerForm = this.fb.group({
     username: ['', Validators.required],
@@ -36,9 +38,10 @@ export class RegisterComponent {
     this.registerService.Register(user)
       .then((response) => {
         if (!response[0].error) {
+          this.toastr.success('Registration Successful!', 'Success!');
           this.router.navigate(['/login']);
         } else {
-          this.errorMesssage = 'An error occured';
+          this.toastr.error('Registration Failed!', 'Error!');
         }
 
         this.registering = false;
