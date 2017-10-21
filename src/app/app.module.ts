@@ -15,17 +15,19 @@ import { LogoComponent } from './logo/logo.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './404/404.component';
 
+import { NavButtonsComponent } from './nav-buttons/nav-buttons.component';
+
 import { AuthService } from '../common/auth.service';
 import { AppService } from './app.service';
 import { AuthGuard } from '../common/auth-guard.service';
-import {AddListService} from "./add-list/add-list.service";
-import {JWTService} from "../common/jwt.service";
-import {RestService} from "../common/rest.service";
-import {HttpModule} from "@angular/http";
-import {HomeService} from "./home/home.service";
-import {LoginService} from "./login/login.service";
-import {RegisterService} from "./register/register.service";
-import {LogoService} from "./logo/logo.service";
+import { AddListService } from "./add-list/add-list.service";
+import { JWTService } from "../common/jwt.service";
+import { RestService } from "../common/rest.service";
+import { HttpModule } from "@angular/http";
+import { HomeService } from "./home/home.service";
+import { LoginService } from "./login/login.service";
+import { RegisterService } from "./register/register.service";
+import { LogoService } from "./logo/logo.service";
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import {LogoService} from "./logo/logo.service";
     LogoComponent,
     RegisterComponent,
     NotFoundComponent,
+    NavButtonsComponent,
   ],
   imports: [
     BrowserModule,
