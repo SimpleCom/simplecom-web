@@ -7,8 +7,9 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '' },
-  // { path: '**', redirectTo: '/home' },
-  // { path: 'profile/:id', canActivate: [ AuthGuard ], component: ProfileComponent },
+  // { path: 'asdf/:id', canActivate: [ AuthGuard ], component: asdf },
+
+  // { path: '**', redirectTo: '/404' },
   // { path: '404', component: NotFoundComponent },
 ];
 
