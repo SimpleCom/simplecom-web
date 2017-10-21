@@ -15,7 +15,7 @@ export class AuthService {
    * @param {string} token
    */
   setToken(token: string): void {
-    this.token.next(token);
+    this.token.next(`Bearer ${token}`);
   }
 
   /**
