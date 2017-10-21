@@ -8,12 +8,11 @@ import { AddListService } from "./add-list.service";
   styleUrls: ['./add-list.component.css']
 })
 export class AddListComponent {
+  constructor(private fb: FormBuilder, private _listService: AddListService) {}
 
   public listForm = this.fb.group({
     name: ['', Validators.required],
   });
-
-  constructor(private fb: FormBuilder, private _listService: AddListService) {}
 
   saveNewList(): void {
     console.log(this.listForm.value.name);
@@ -25,6 +24,5 @@ export class AddListComponent {
         console.log(err);
         this.listForm.controls.name.patchValue('');
     });
-
   }
 }

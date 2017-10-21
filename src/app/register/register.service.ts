@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {IUser} from "../../interfaces/user.interface";
-import {environment} from "../../environments/environment";
-import {RestService} from "../../common/rest.service";
+import { Injectable } from "@angular/core";
+import { IUser } from "../../interfaces/user.interface";
+import { environment } from "../../environments/environment";
+import { RestService } from "../../common/rest.service";
 
 @Injectable()
 export class RegisterService {
@@ -13,6 +13,6 @@ export class RegisterService {
    * @returns {Promise<any>}
    */
   Register(user: IUser): Promise<any> {
-    return this._http.post(`${environment.constants.apiUrl}/user/register`, user);
+    return this._http.post(`${ environment.constants.apiUrl }user/register`, user);
   }
 }

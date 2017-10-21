@@ -21,14 +21,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logo', component: LogoComponent },
   { path: 'register', component: RegisterComponent },
+
+  { path: '**', redirectTo: '404' },
   { path: '404', component: NotFoundComponent },
 
   // { path: 'home/:id', component: HomeComponent },
-  // { path: '**', redirectTo: '' },
   // { path: 'asdf/:id', canActivate: [ AuthGuard ], component: asdf },
-
-  // { path: '**', redirectTo: '/404' },
-  // { path: '404', component: NotFoundComponent },
 ];
 
 @NgModule({
@@ -41,3 +39,8 @@ const routes: Routes = [
 })
 
 export class RouteModule { }
+
+// /user/login
+// uname | pass
+// /user/register
+// uname | pass

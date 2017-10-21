@@ -1,4 +1,4 @@
 export interface IUser {
-  usernamee: string;
-  password: string;
+  uname: string;
+  pass: string;
 }
