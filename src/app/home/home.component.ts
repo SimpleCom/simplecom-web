@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -16,7 +16,7 @@ import {IJWT} from "../../interfaces/jwt.interface";
 })
 export class HomeComponent implements OnInit {
   public jwt: IJWT;
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private route: ActivatedRoute, private homeService: HomeService, private _auth: AuthService) {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, private homeService: HomeService, private _auth: AuthService) {
     this._auth.user.subscribe((user: IJWT) => {
       this.jwt = user;
     });

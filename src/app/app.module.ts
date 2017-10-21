@@ -33,7 +33,6 @@ import { HomeService } from "./home/home.service";
 import { LoginService } from "./login/login.service";
 import { RegisterService } from "./register/register.service";
 import { UploaderService } from "./uploader/uploader.service";
-import { LogoService } from "./logo/logo.service";
 
 @NgModule({
   declarations: [
