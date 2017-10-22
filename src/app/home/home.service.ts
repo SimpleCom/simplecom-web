@@ -15,8 +15,11 @@ export class HomeService {
    */
   AddNewList(listName: string): Promise<any> {
     const body = {
-      "name": listName
-    }
+      "name": listName,
+      "contacts": []
+    };
+
+    console.log(body);
 
     return this._http.post(`${ environment.constants.apiUrl }/lists`, body);
   }
@@ -26,7 +29,7 @@ export class HomeService {
    * @returns {Promise<any>}
    */
   GetAllLists(): Promise<any> {
-    return this._http.get(`${ environment.constants.apiUrl}/lists`);
+    return this._http.get(`${ environment.constants.apiUrl }/lists`);
   }
 
   /**
