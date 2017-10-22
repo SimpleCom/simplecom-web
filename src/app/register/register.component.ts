@@ -51,6 +51,11 @@ export class RegisterComponent {
   }
 
   inspectForms(){
-    
+    if ((this.registerForm.value.password !== this.registerForm.value.repassword) && this.registerForm.value.password && this.registerForm.value.repassword) {
+      this.ErrorMessage = "Passwords do not match";
+    }
+    else{
+      this.ErrorMessage = "";
+    }
   }
 }
