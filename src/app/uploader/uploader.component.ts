@@ -30,13 +30,15 @@ export class UploaderComponent implements OnInit {
     }
     this.filePath = event.target.value;
     this._uploaderService.files = event.target.files;
-    console.log(event.target.files);
+    // console.log(event.target.files);
   }
 
   UploadFile() {
     this._uploaderService.UploadFile()
       .then(res => {
         this._toast.success('Upload Succesful!', 'Success!');
+        this.filePath = '';
+        this._uploaderService.files = null;
       }).catch(err => {
         console.log(err);
         // this._toast.error('Upload Failed.', 'Error!');

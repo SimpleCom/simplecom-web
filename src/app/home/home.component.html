@@ -10,7 +10,11 @@
   </div>
 
   <div *ngIf="!loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
-    <button type="button" (click)="toggleDropdown()" class="btn btn-primary pointer mb-3"><i class="fa fa-plus"></i></button>
+    <button type="button" (click)="toggleDropdown()" class="btn btn-primary pointer mb-3">
+      <i *ngIf="!dropdownDisplay" class="fa fa-plus"></i>
+      <i *ngIf="dropdownDisplay" class="fa fa-minus"></i>
+      &nbsp;Add List
+    </button>
 
     <div *ngIf="dropdownDisplay">
       <form [formGroup]="listForm" (ngSubmit)="saveNewList()">
@@ -26,7 +30,7 @@
     <div class="mt-4">
       <ul class="list-group" >
         <li *ngFor="let list of lists; let i = index;" class="list-group-item">
-          
+
           <div *ngIf="editingList === list.id">
             <form (ngSubmit)="saveEditedList(list)">
               <input id="edit-list-{{i}}" type="text" class="edited-list" [(ngModel)]="list.name" [ngModelOptions]="{standalone: true}" maxlength="30">
@@ -45,8 +49,21 @@
                 <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
                 <button (click)="editList(list)" class="btn btn-primary btn-lg right pointer edit-list-button"><i class="fa fa-pencil"></i></button>
               </div>
+              <div class="col-md-12">
+                <div class="list-contact-container">
+                  <table class="table table-condensed table-striped table-bordered">
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                    </tr>
+                    <tr *ngFor="let contact of list.contacts">
+                      <td>{{contact.name}}</td>
+                      <td>{{contact.email}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             </div>
-
           </div>
 
         </li>

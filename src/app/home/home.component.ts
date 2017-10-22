@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     name: ['', Validators.required],
   });
 
-  private dropdownDisplay: boolean = false;
+  public dropdownDisplay: boolean = false;
   private lists: IList;
   public addingList: boolean = false;
   public jwt: IJWT;
