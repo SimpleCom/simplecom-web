@@ -22,16 +22,20 @@ export class UpdateListComponent implements OnInit {
   });
 
   private contacts: any = [];
+  private listDetails: any = [];
 
   ngOnInit() {
     this._listService.GetListDetails(this.route.snapshot.params['id'])
      .then(response => {
+        console.log(response);
+        this.listDetails = response;
       }).catch(e => {
       });
 
     this._listService.GetListContacts(this.route.snapshot.params['id'])
      .then(response => {
        this.contacts = response.contacts;
+        console.log(response);
       }).catch(e => {
       });
   }

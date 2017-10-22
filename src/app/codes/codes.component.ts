@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -13,13 +14,22 @@ import { CodesService } from './codes.service';
 })
 
 export class CodesComponent implements OnInit {
-  constructor(private toastr: ToastsManager, private route: ActivatedRoute, private codesService: CodesService) {}
+  constructor(private fb: FormBuilder, private toastr: ToastsManager, private route: ActivatedRoute, private codesService: CodesService) {}
   private dropdownDisplay: boolean = false;
   private secureKeyValue: string = "";
   private fakeKeyValue: string = "";
+  private inputSelected: number;
 
   ngOnInit() {
-    // console.log(this.route.snapshot.params['id']);
+    this.codesService.getAllCodes()
+      .then((response) => {
+        this.fakeKeyValue = response.publicPasscode;
+        this.secureKeyValue = response.securePasscode;
+      })
+  }
+
+  setKeyCodeInput(whichInput) {
+    this.inputSelected = whichInput;
   }
 
   showDropdown(){
@@ -31,11 +41,29 @@ export class CodesComponent implements OnInit {
     this.fakeKeyValue = this.generateKey();
   }
 
+  setKeyCode(key) {
+    if (this.inputSelected === 0) {
+      if (this.secureKeyValue.length <= 6) {
+        this.secureKeyValue += key;
+      }
+    }
+
+    if (this.inputSelected === 1) {
+      if (this.fakeKeyValue.length <= 6) {
+        this.fakeKeyValue += key;
+      }
+    }
+  }
+
+  clearCodes() {
+    this.fakeKeyValue = '';
+    this.secureKeyValue = '';
+  }
+
   generateKey(){
-    const dictionary = "0123456789ABCDEF"; //list of possible values
+    const dictionary = "0123456789ABCDEF";
     let key = "";
 
-    //generate key
     for (let i = 0; i < 6; i++){
       key += dictionary.charAt(Math.floor(Math.random() * dictionary.length));
     }
@@ -45,27 +73,23 @@ export class CodesComponent implements OnInit {
 
   setCodes(){
     const codes = {
-      "secure": this.secureKeyValue,
-      "public": this.fakeKeyValue
+      "securePasscode": this.secureKeyValue,
+      "publicPasscode": this.fakeKeyValue
     };
     
     this.codesService.AddNewCodes(codes)
-    .then((response) =>{
+      .then((response) =>{
 
-      if (response) {
-        this.toastr.success('Codes Set!', 'Success!');
-      }
+        if (response) {
+          this.toastr.success('Codes Set!', 'Success!');
+        }
 
-      else{
-        this.toastr.error('Codes were not set.', 'Error!');
+        else{
+          this.toastr.error('Codes were not set.', 'Error!');
+        }
       }
-    }
   
-  );
+    );
 
-  }
-
-  deleteCodes(){  
-    this.codesService.DeleteCodes();
   }
 }
