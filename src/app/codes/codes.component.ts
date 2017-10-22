@@ -47,20 +47,20 @@ export class CodesComponent implements OnInit {
   }
 
   setKeyCode(key) {
-    if (this.inputSelected === 0 && this.secureKeyValue.length <= 6) {
-      if (key !== -1) {
-        this.secureKeyValue += key;
-      } else {
-        this.secureKeyValue = this.secureKeyValue.slice(0, this.secureKeyValue.length -1);
-      }
+    if (this.inputSelected === 0 && this.secureKeyValue.length < 6 && key !== -1) {
+      this.secureKeyValue += key;
     }
 
-    if (this.inputSelected === 1 && this.fakeKeyValue.length <= 6) {
-      if (key !== -1) {
-        this.fakeKeyValue += key;
-      } else {
-        this.fakeKeyValue = this.fakeKeyValue.slice(0, this.fakeKeyValue.length -1);
-      }
+    if (this.inputSelected === 0 && key === -1) {
+      this.secureKeyValue = this.secureKeyValue.slice(0, this.secureKeyValue.length -1);
+    }
+
+    if (this.inputSelected === 1 && this.fakeKeyValue.length < 6 && key !== -1) {
+      this.fakeKeyValue += key;
+    }
+
+    if (this.inputSelected === 1 && key === -1) {
+      this.fakeKeyValue = this.fakeKeyValue.slice(0, this.fakeKeyValue.length -1);
     }
   }
 
