@@ -19,13 +19,17 @@ export class CodesComponent implements OnInit {
   private secureKeyValue: string = "";
   private fakeKeyValue: string = "";
   private inputSelected: number;
+  private loading: boolean = false;
 
   ngOnInit() {
+    this.loading = true;
     this.codesService.getAllCodes()
       .then((response) => {
         this.fakeKeyValue = response.publicPasscode;
         this.secureKeyValue = response.securePasscode;
+        this.loading = false;
       })
+
   }
 
   setKeyCodeInput(whichInput) {
