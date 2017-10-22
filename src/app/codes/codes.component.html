@@ -5,29 +5,46 @@
     <nav-buttons></nav-buttons> 
   </div>
 
-  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 mt-5"> 
+  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10"> 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-4">
         <form class="form-horizontal">
           <div class="form-group">
             <label for="Secure Key">Secure Key</label>
-            <input type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="Enter Secure Key" value="{{ secureKeyValue }}">
+            <input formControlName="secure" (click)="setKeyCodeInput(0)" type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="" value="{{ secureKeyValue }}" readonly>
           </div>
+
           <div class="form-group">
             <label for="Fake Key">Fake Key</label>
-            <input type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="Enter Fake Key" value="{{ fakeKeyValue }}">
+            <input formControlName="fake" (click)="setKeyCodeInput(1)" type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="" value="{{ fakeKeyValue }}" readonly>
+          </div>
+
+          <button (click)="setKeyCode(0)" type="button" class="btn btn-secondary btn-lg keypad mb-1">0</button>
+          <button (click)="setKeyCode(1)" type="button" class="btn btn-secondary btn-lg keypad mb-1">1</button>
+          <button (click)="setKeyCode(2)" type="button" class="btn btn-secondary btn-lg keypad mb-1">2</button>
+          <button (click)="setKeyCode(3)" type="button" class="btn btn-secondary btn-lg keypad mb-1">3</button>
+          <br>
+          <button (click)="setKeyCode(4)" type="button" class="btn btn-secondary btn-lg keypad mb-1">4</button>
+          <button (click)="setKeyCode(5)" type="button" class="btn btn-secondary btn-lg keypad mb-1">5</button>
+          <button (click)="setKeyCode(6)" type="button" class="btn btn-secondary btn-lg keypad mb-1">6</button>
+          <button (click)="setKeyCode(7)" type="button" class="btn btn-secondary btn-lg keypad mb-1">7</button>
+          <br>
+          <button (click)="setKeyCode(8)" type="button" class="btn btn-secondary btn-lg keypad mb-1">8</button>
+          <button (click)="setKeyCode(9)" type="button" class="btn btn-secondary btn-lg keypad mb-1">9</button>
+          <button (click)="setKeyCode('A')" type="button" class="btn btn-secondary btn-lg keypad mb-1">A</button>
+          <button (click)="setKeyCode('B')" type="button" class="btn btn-secondary btn-lg keypad mb-1">B</button>
+          <br>
+          <button (click)="setKeyCode('C')" type="button" class="btn btn-secondary btn-lg keypad mb-1">C</button>
+          <button (click)="setKeyCode('D')" type="button" class="btn btn-secondary btn-lg keypad mb-1">D</button>
+          <button (click)="setKeyCode('E')" type="button" class="btn btn-secondary btn-lg keypad mb-1">E</button>
+          <button (click)="setKeyCode('F')" type="button" class="btn btn-secondary btn-lg keypad mb-1">F</button>
+
+          <div class="form-group">
+            <button type="button" (click)="setCodes()" class="btn btn-primary" [disabled]="secureKeyValue.length < 6 || fakeKeyValue.length < 6">Set Codes</button>
+            <button type="button" (click)="clearCodes()" class="btn btn-danger">Clear Codes</button>
+            <button type="button" (click)="randomizeKeys()" class="btn btn-info">Randomize</button>
           </div>
         </form>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-2">
-        <button type="button" (click)="randomizeKeys()" class="btn btn-block btn-primary">Randomize</button>
-      </div>
-
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 col-xl-2">
-        <button type="button" (click)="setCodes()" class="btn btn-block btn-primary">Set Codes</button>
       </div>
     </div>
   </div>
