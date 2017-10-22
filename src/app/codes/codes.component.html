@@ -11,12 +11,12 @@
         <form class="form-horizontal">
           <div class="form-group">
             <label for="Secure Key">Secure Key</label>
-            <input formControlName="secure" (click)="setKeyCodeInput(0)" type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="" value="{{ secureKeyValue }}" readonly>
+            <input (click)="setKeyCodeInput(0)" type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="" value="{{ secureKeyValue }}" readonly>
           </div>
 
           <div class="form-group">
             <label for="Fake Key">Fake Key</label>
-            <input formControlName="fake" (click)="setKeyCodeInput(1)" type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="" value="{{ fakeKeyValue }}" readonly>
+            <input (click)="setKeyCodeInput(1)" type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="" value="{{ fakeKeyValue }}" readonly>
           </div>
 
           <button (click)="setKeyCode(0)" type="button" class="btn btn-secondary btn-lg keypad mb-1">0</button>
