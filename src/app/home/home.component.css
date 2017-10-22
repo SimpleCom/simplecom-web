@@ -6,3 +6,7 @@ input.edited-list {
   height: 46px;
   width: 500px;
 }
+
+div.list-contact-container {
+  margin-top: 10px;
+}
