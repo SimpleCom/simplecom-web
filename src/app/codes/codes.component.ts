@@ -16,10 +16,11 @@ import { CodesService } from './codes.service';
 export class CodesComponent implements OnInit {
   constructor(private fb: FormBuilder, private toastr: ToastsManager, private route: ActivatedRoute, private codesService: CodesService) {}
   private dropdownDisplay: boolean = false;
+  private loading: boolean = false;
+  private settingCodes: boolean = false;
   private secureKeyValue: string = "";
   private fakeKeyValue: string = "";
   private inputSelected: number;
-  private loading: boolean = false;
 
   ngOnInit() {
     this.loading = true;
@@ -71,6 +72,7 @@ export class CodesComponent implements OnInit {
   }
 
   setCodes(){
+    this.settingCodes = true;
     const codes = {
       "securePasscode": this.secureKeyValue,
       "publicPasscode": this.fakeKeyValue
@@ -80,5 +82,8 @@ export class CodesComponent implements OnInit {
       .then(() => this.toastr.success('Codes successfully set!', 'Codes set'))
       .catch(e => this.toastr.success(`Error: ${e}`, 'Whoops!')
     );
+
+    this.settingCodes = false;
+
   }
 }
