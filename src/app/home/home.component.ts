@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   public listForm = this.fb.group({
     name: ['', Validators.required],
   });
-  private dropdownDisplay: boolean = true;
+  private dropdownDisplay: boolean = false;
   private lists: IList;
   public addingList: boolean = false;
   

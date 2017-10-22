@@ -1,27 +1,39 @@
 <h1>Home</h1>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
     <nav-buttons></nav-buttons>
   </div>
 
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
-    <button type="button" (click)="toggleDropdown()" class="btn btn-block btn-primary">Add List</button>
-      <form *ngIf="dropdownDisplay" [formGroup]="listForm" (ngSubmit)="saveNewList()">
-        <div class="form-group">
-          <label for="username">New list name</label>
-          <input formControlName="name" type="text" class="form-control" id="username" maxlength="64">
-        </div>
-        <button *ngIf="!addingList" (click)="saveNewList()" type="button" class="btn btn-primary" [disabled]="!listForm.value.name">Add</button>
-        <button *ngIf="addingList" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
-      </form>
+  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+    <div row>
+      <div class = "col-xs-12 col-sm=12 col-md-3 col-lg-3 col-xl-2">
+        <button type="button" (click)="toggleDropdown()" class="btn btn-block btn-primary">Add List</button>
+      </div>
+    </div>
 
-    <ul class="list-group">
-      <!--{{jwt | json}}-->
-      <li *ngFor="let list of lists" class="list-group-item">
-        <span (click)="viewListDetails(list)" class="big-span hover pointer">{{ list.name }}</span>
-        <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
-      </li>
-    </ul>
+    <div row *ngIf="dropdownDisplay">
+      <div class = "col-xs-12 col-sm=12 col-md-6 col-lg-3 col-xl-3 mt-2">
+        <form [formGroup]="listForm" (ngSubmit)="saveNewList()">
+          <div class="form-group">
+            <label for="username">New list name</label>
+            <input formControlName="name" type="text" class="form-control" id="username" maxlength="64">
+          </div>
+          <button *ngIf="!addingList" (click)="saveNewList()" type="button" class="btn btn-primary" [disabled]="!listForm.value.name">Add</button>
+          <button *ngIf="addingList" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
+        </form>
+      </div>
+      <hr>
+    </div>
+
+    <div row class = "mt-4">
+      <ul class="list-group" >
+        <!--{{jwt | json}}-->
+        <li *ngFor="let list of lists" class="list-group-item">
+          <span (click)="viewListDetails(list)" class="big-span hover pointer">{{ list.name }}</span>
+          <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
