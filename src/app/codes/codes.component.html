@@ -5,7 +5,11 @@
     <nav-buttons></nav-buttons> 
   </div>
 
-  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10"> 
+  <div *ngIf="loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+    <h1 class="text-center">Loading... <i class="fa fa-circle-o-notch fa-spin fa-1x"></i></h1>
+  </div>
+
+  <div *ngIf="!loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10"> 
     <div class="row">
       <form (keydown)="showKeyCodeBorder($event)" class="form-horizontal">
         <div class="form-group">
