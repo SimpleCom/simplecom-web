@@ -42,17 +42,8 @@ export class CodesComponent implements OnInit {
   }
 
   setKeyCode(key) {
-    if (this.inputSelected === 0) {
-      if (this.secureKeyValue.length <= 6) {
-        this.secureKeyValue += key;
-      }
-    }
-
-    if (this.inputSelected === 1) {
-      if (this.fakeKeyValue.length <= 6) {
-        this.fakeKeyValue += key;
-      }
-    }
+    if (this.inputSelected === 0 && this.secureKeyValue.length < 6) this.secureKeyValue += key;
+    if (this.inputSelected === 1 && this.fakeKeyValue.length < 6) this.fakeKeyValue += key;
   }
 
   clearCodes() {
@@ -71,25 +62,19 @@ export class CodesComponent implements OnInit {
     return key;
   }
 
+  showKeyCodeBorder(e) {
+    console.log(e.key);
+  }
+
   setCodes(){
     const codes = {
       "securePasscode": this.secureKeyValue,
       "publicPasscode": this.fakeKeyValue
     };
-    
+
     this.codesService.AddNewCodes(codes)
-      .then((response) =>{
-
-        if (response) {
-          this.toastr.success('Codes Set!', 'Success!');
-        }
-
-        else{
-          this.toastr.error('Codes were not set.', 'Error!');
-        }
-      }
-  
+      .then(() => this.toastr.success('Codes successfully set!', 'Codes set'))
+      .catch(e => this.toastr.success(`Error: ${e}`, 'Whoops!')
     );
-
   }
 }

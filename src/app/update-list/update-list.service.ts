@@ -3,7 +3,8 @@ import { RestService } from "../../common/rest.service";
 import { environment } from "../../environments/environment";
 
 import { AuthService } from '../../common/auth.service';
-import {IContact} from "../../interfaces/contacts.interface";
+
+import { IContact } from "../../interfaces/contacts.interface";
 
 @Injectable()
 export class UpdateListService {

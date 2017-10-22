@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {RestService} from "../../common/rest.service";
-import {environment} from "../../environments/environment";
-import {IJWT} from "../../interfaces/jwt.interface";
-import {AuthService} from "../../common/auth.service";
+import { Injectable } from "@angular/core";
+import { RestService } from "../../common/rest.service";
+import { environment } from "../../environments/environment";
+import { IJWT } from "../../interfaces/jwt.interface";
+import { AuthService } from "../../common/auth.service";
 
 @Injectable()
 export class UploaderService {

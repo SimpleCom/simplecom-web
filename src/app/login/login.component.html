@@ -13,7 +13,7 @@
     <input formControlName="password" type="password" class="form-control" id="password">
   </div>
 
-  <button *ngIf="!loggingIn" (click)="login()" type="submit" class="btn btn-primary" [disabled]="!loginForm.value.username || !loginForm.value.password">Login</button>
+  <button *ngIf="!loggingIn" (click)="login()" type="submit" class="btn btn-primary pointer" [disabled]="!loginForm.value.username || !loginForm.value.password">Login</button>
   <button *ngIf="loggingIn" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
 
   <div class="form-group">

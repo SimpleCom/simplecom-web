@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 
@@ -17,25 +17,24 @@ import { IJWT } from "../../interfaces/jwt.interface";
 })
 
 export class HomeComponent implements OnInit {
-  public jwt: IJWT;
-  public editingList: number = -1;
-
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private fb: FormBuilder, private router: Router, private homeService: HomeService, private _auth: AuthService) {
+  constructor(public toastr: ToastsManager, private fb: FormBuilder, private router: Router, private homeService: HomeService, private _auth: AuthService) {
     this._auth.user.subscribe((user: IJWT) => {
       this.jwt = user;
     });
   }
+
   public listForm = this.fb.group({
     name: ['', Validators.required],
   });
+
   private dropdownDisplay: boolean = false;
   private lists: IList;
   public addingList: boolean = false;
-
+  public jwt: IJWT;
+  public editingList: number = -1;
 
   ngOnInit() {
-    this.homeService.GetAllLists()
-      .then((response) => this.lists = response);
+    this.homeService.GetAllLists().then((response) => this.lists = response);
   }
 
   toggleDropdown(){
@@ -46,13 +45,12 @@ export class HomeComponent implements OnInit {
     this.addingList = true;
 
     this.homeService.AddNewList(this.listForm.value.name)
-      .then(response => {
+      .then(() => {
         this.addingList = false;
         this.listForm.controls.name.patchValue('');
-        this.toastr.success('List successfully created!', 'Success!')
-      }).catch(e => {
-        console.log(e);
-      });
+        this.toastr.success('List successfully created!', 'List created');
+        this.homeService.GetAllLists().then((response) => this.lists = response);
+      }).catch(e => this.toastr.error(`Error ${e}`, 'Whoops!'));
   }
 
   viewListDetails(list) {
@@ -61,11 +59,10 @@ export class HomeComponent implements OnInit {
 
   deleteList(list) {
     this.homeService.DeleteList(list.id)
-      .then((response) => {
-        console.log(response);
-        this.homeService.GetAllLists()
-          .then((response) => this.lists = response);
-      });
+      .then(() => {
+        this.toastr.success('List successfully deleted!', 'It\'s gone');
+        this.homeService.GetAllLists().then((response) => this.lists = response);
+      }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'));
   }
 
   editList(list: IList) {
@@ -74,12 +71,9 @@ export class HomeComponent implements OnInit {
 
   saveEditedList(list: IList) {
     this.homeService.EditListName(list)
-      .then(res => {
-        console.log(res);
-      }).catch(err => {
-        console.log(err);
-      }).then(non => {
-      this.editingList = -1;
-      });
+      .then(() => this.toastr.success('List successfully edited!', 'List updated'))
+      .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'))
+      .then(non => this.editingList = -1
+    );
   }
 }

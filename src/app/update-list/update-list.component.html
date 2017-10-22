@@ -17,19 +17,20 @@
         <input formControlName="email" type="email" class="form-control" id="email" maxlength="96">
       </div>
 
-      <button type="submit" class="btn btn-primary" [disabled]="!listForm.value.name || !listForm.value.email">Add Contact</button>
+      <button type="submit" class="btn btn-primary pointer" [disabled]="!listForm.value.name || !listForm.value.email">Add Contact</button>
     </form>
+    
     <div class="contacts-container">
       <div *ngFor="let contact of contacts">
         <div class="card" *ngIf="editingContact === contact.id">
           <div class="card-body">
             <form (ngSubmit)="saveContact(contact)">
-              <h3><input type="text"  [ngModelOptions]="{standalone: true}" [(ngModel)]="contact.name"/> <button type="submit" (click)="saveContact(contact)" class="btn btn-success right pointer"><i class="fa fa-check"></i></button> </h3>
+              <h3><input type="text"  [ngModelOptions]="{standalone: true}" [(ngModel)]="contact.name"/><button type="button" (click)="saveContact(contact)" class="btn btn-success right pointer"><i class="fa fa-check"></i></button> </h3>
               <p><input type="email"  [ngModelOptions]="{standalone: true}" [(ngModel)]="contact.email"/></p>
             </form>
-
           </div>
         </div>
+        
         <div class="card" *ngIf="editingContact !== contact.id">
           <div class="card-body">
             <h3>{{ contact.name }} <button (click)="deleteContact(contact.id)" class="btn btn-danger right pointer"><i class="fa fa-trash-o"></i></button><button (click)="editContact(contact)" class="btn btn-primary right pointer edit-contact"><i class="fa fa-pencil"></i></button> </h3>

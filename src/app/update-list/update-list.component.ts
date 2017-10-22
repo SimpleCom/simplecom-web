@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 import { UpdateListService } from "./update-list.service";
 import { AuthService } from '../../common/auth.service';
 
-import * as jwt from 'jwt-decode';
-import {IContact} from "../../interfaces/contacts.interface";
+import { IContact } from "../../interfaces/contacts.interface";
 
 @Component({
   selector: 'app-update-list',
@@ -15,7 +16,7 @@ import {IContact} from "../../interfaces/contacts.interface";
   providers: [ UpdateListService ]
 })
 export class UpdateListComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private _listService: UpdateListService, private authService: AuthService) {}
+  constructor(public toastr: ToastsManager, private route: ActivatedRoute, private fb: FormBuilder, private _listService: UpdateListService, private authService: AuthService) {}
 
   public listForm = this.fb.group({
     name: ['', Validators.required],
@@ -28,16 +29,13 @@ export class UpdateListComponent implements OnInit {
 
   ngOnInit() {
     this._listService.GetListDetails(this.route.snapshot.params['id'])
-     .then(response => {
-        this.listDetails = response;
-      }).catch(e => {
-      });
+     .then(response => this.listDetails = response)
+     .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'));
 
     this._listService.GetListContacts(this.route.snapshot.params['id'])
-     .then(response => {
-       this.contacts = response.contacts;
-      }).catch(e => {
-      });
+     .then(response => this.contacts = response.contacts)
+     .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
+    );
   }
 
   saveNewContact() {
@@ -48,27 +46,26 @@ export class UpdateListComponent implements OnInit {
 
     this._listService.AddListContact(this.route.snapshot.params['id'], contact)
       .then(response => {
-         this._listService.GetListContacts(this.route.snapshot.params['id'])
-         .then(response => {
-           this.contacts = response.contacts;
-           this.listForm.controls.name.patchValue('');
-           this.listForm.controls.email.patchValue('');
-          }).catch(e => {
-          });
-      }).catch(e => {
-      });
+        this._listService.GetListContacts(this.route.snapshot.params['id'])
+        .then(response => {
+          this.contacts = response.contacts;
+          this.listForm.controls.name.patchValue('');
+          this.listForm.controls.email.patchValue('');
+          }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
+        );
+      }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
+    );
   }
 
   deleteContact(contactID) {
     this._listService.DeleteContact(this.route.snapshot.params['id'], contactID)
       .then(response => {
         this._listService.GetListContacts(this.route.snapshot.params['id'])
-         .then(response => {
-           this.contacts = response.contacts;
-          }).catch(e => {
-          });
-      }).catch(e => {
-      });
+         .then(response => this.contacts = response.contacts)
+         .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
+        );
+      }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
+    );
   }
 
   editContact(contact: IContact) {
@@ -76,14 +73,10 @@ export class UpdateListComponent implements OnInit {
   }
 
   saveContact(contact: IContact) {
-    console.log(contact);
     this._listService.EditContact(this.route.snapshot.params['id'], contact)
-      .then(res => {
-        console.log(res);
-      }).catch(err => {
-        console.log(err);
-      }).then(non => {
-        this.editingContact = -1;
-      });
+      .then(() => this.toastr.success('Contact successfully edited!', 'Contact edited'))
+      .catch(e => this.toastr.success(`Error: ${e}`, 'Whoops!'))
+      .then(non => this.editingContact = -1
+    );
   }
 }

@@ -13,14 +13,11 @@ import { AuthService } from '../../common/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private toastr: ToastsManager, private router: Router, private fb: FormBuilder, private loginService: LoginService, private authService: AuthService) {
-    // this.toastr.setRootViewContainerRef(vcr);
-  }
+  constructor(private toastr: ToastsManager, private router: Router, private fb: FormBuilder, private loginService: LoginService, private authService: AuthService) {}
 
   public loginForm = this.fb.group({
     username: ['', Validators.required],
-    password: ['', Validators.required],
-    // code: ['', Validators.required],
+    password: ['', Validators.required]
   });
 
   private loggingIn: boolean = false;
@@ -37,18 +34,8 @@ export class LoginComponent {
     };
 
     this.loginService.Login(user)
-      .then((response) =>   {
-        if (response) {
-          this.toastr.success('Login successful', 'Success!');
-          this.authService.setToken(response.jwt);
-          console.log(this.authService.getToken());
-          this.router.navigate(['/home']);
-        } else {
-          this.toastr.error('Login unsuccessful', 'Error!');
-        }
-
-        this.loggingIn = false;
-      }
+      .then(() => this.toastr.success('Login successful!', 'You\'re in!'))
+      .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
     );
   }
 }

@@ -1,16 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.css']
 })
-export class LogoComponent implements OnInit {
+export class LogoComponent {
   constructor() {}
-
-
-  ngOnInit() {
-    // console.log(this.route.snapshot.params['id']);
-  }
-
 }

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {UploaderService} from "./uploader.service";
-import {FormBuilder, Validators} from "@angular/forms";
-import {ToastsManager} from "ng2-toastr";
-import {environment} from "../../environments/environment";
+import { Component, OnInit } from '@angular/core';
+import { UploaderService } from "./uploader.service";
+import { FormBuilder, Validators } from "@angular/forms";
+import { ToastsManager } from "ng2-toastr";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: 'page-uploader',

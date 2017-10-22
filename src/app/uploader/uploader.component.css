@@ -1,0 +1,9 @@
+/* Make the ugly default input field prettier */
+.inputfile {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  z-index: -1;
+}

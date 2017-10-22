@@ -19,8 +19,7 @@ export class RegisterComponent {
   public registerForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
-    repassword: ['', Validators.required],
-    // code: ['', Validators.required],
+    repassword: ['', Validators.required]
   });
 
   private registering: boolean = false;
@@ -38,23 +37,17 @@ export class RegisterComponent {
     };
 
     this.registerService.Register(user)
-      .then((response) => {
-        if (!response[0].error) {
-          this.toastr.success('Registration Successful!', 'Success!');
-          this.router.navigate(['/login']);
-        }
-
+      .then(() => {
+        this.toastr.success('Registration successful!', 'Success')
+        this.router.navigate(['/login']);
         this.registering = false;
-      }).catch(e => {
-        console.log(e);
-      });
+      }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'))
   }
 
-  inspectForms(){
+  inspectForms() {
     if ((this.registerForm.value.password !== this.registerForm.value.repassword) && this.registerForm.value.password && this.registerForm.value.repassword) {
       this.ErrorMessage = "Passwords do not match";
-    }
-    else{
+    } else {
       this.ErrorMessage = "";
     }
   }
