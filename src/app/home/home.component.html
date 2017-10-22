@@ -49,6 +49,11 @@
                 <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
                 <button (click)="editList(list)" class="btn btn-primary btn-lg right pointer edit-list-button"><i class="fa fa-pencil"></i></button>
               </div>
+
+              <div class="col-md-12" *ngIf="!list.contacts.length">
+                <p>No contacts available</p>
+              </div>              
+
               <div class="col-md-12" *ngIf="list.contacts.length">
                 <div class="list-contact-container">
                   <table class="table table-condensed table-striped table-bordered">

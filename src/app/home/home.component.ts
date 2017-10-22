@@ -27,8 +27,7 @@ export class HomeComponent implements OnInit {
   });
 
   public dropdownDisplay: boolean = false;
-  // private lists: IList;
-  private lists: any;
+  private lists: IList;
   public addingList: boolean = false;
   public jwt: IJWT;
   public editingList: number = -1;
@@ -37,48 +36,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.homeService.GetAllLists().then((response) => {
-      // this.lists = response;
-
-      this.lists = [
-        {
-          "id": 0,
-          "name": "Example List",
-          "contacts": [
-            {
-              "id": 0,
-              "email": "example@e.com",
-              "listName": "Example List",
-              "name": "Timmy Tommy"
-            },
-            {
-              "id": 1,
-              "email": "example@e.com",
-              "listName": "Example List",
-              "name": "Timmy Tommy 2"
-            }
-          ]
-        },
-        {
-          "id": 1,
-          "name": "Example List 2",
-          "contacts": [
-            {
-              "id": 2,
-              "email": "example@e.com",
-              "listName": "Example List",
-              "name": "Tommy Timmy"
-            },
-            {
-              "id": 3,
-              "email": "example@e.com",
-              "listName": "Example List",
-              "name": "Tommy Timmy 2"
-            }
-          ]
-        }
-      ];
-
-      console.log(response);
+      this.lists = response;
       this.loading = false;
     });
   }
