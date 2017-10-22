@@ -22,18 +22,29 @@
     <div class="mt-4">
       <ul class="list-group" >
         <li *ngFor="let list of lists; let i = index;" class="list-group-item">
+          
           <div *ngIf="editingList === list.id">
             <form (ngSubmit)="saveEditedList(list)">
               <input id="edit-list-{{i}}" type="text" class="edited-list" [(ngModel)]="list.name" [ngModelOptions]="{standalone: true}" maxlength="30">
               <button type="submit" class="btn btn-success btn-lg right pointer edit-list-button"><i class="fa fa-check"></i></button>
-            </form> 
+            </form>
           </div>
 
           <div *ngIf="editingList !== list.id">
-            <span (click)="viewListDetails(list)" class="big-span hover pointer">{{ list.name }}</span>
-            <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
-            <button (click)="editList(list)" class="btn btn-primary btn-lg right pointer edit-list-button"><i class="fa fa-pencil"></i></button>
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-10 hover pointer" (click)="viewListDetails(list)">
+                <span (click)="viewListDetails(list)" class="big-span">{{ list.name }}</span>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
+                <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
+                <button (click)="editList(list)" class="btn btn-primary btn-lg right pointer edit-list-button"><i class="fa fa-pencil"></i></button>
+              </div>
+            </div>
+
           </div>
+
         </li>
       </ul>
     </div>
