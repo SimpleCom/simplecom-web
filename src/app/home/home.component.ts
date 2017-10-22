@@ -18,6 +18,8 @@ import { IJWT } from "../../interfaces/jwt.interface";
 
 export class HomeComponent implements OnInit {
   public jwt: IJWT;
+  public editingList: number = -1;
+
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private fb: FormBuilder, private router: Router, private homeService: HomeService, private _auth: AuthService) {
     this._auth.user.subscribe((user: IJWT) => {
       this.jwt = user;
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
   private dropdownDisplay: boolean = false;
   private lists: IList;
   public addingList: boolean = false;
-  
+
 
   ngOnInit() {
     this.homeService.GetAllLists()
@@ -63,6 +65,21 @@ export class HomeComponent implements OnInit {
         console.log(response);
         this.homeService.GetAllLists()
           .then((response) => this.lists = response);
+      });
+  }
+
+  editList(list: IList) {
+    this.editingList = list.id;
+  }
+
+  saveEditedList(list: IList) {
+    this.homeService.EditListName(list)
+      .then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      }).then(non => {
+      this.editingList = -1;
       });
   }
 }

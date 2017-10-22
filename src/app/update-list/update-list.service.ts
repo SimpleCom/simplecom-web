@@ -3,6 +3,7 @@ import { RestService } from "../../common/rest.service";
 import { environment } from "../../environments/environment";
 
 import { AuthService } from '../../common/auth.service';
+import {IContact} from "../../interfaces/contacts.interface";
 
 @Injectable()
 export class UpdateListService {
@@ -40,5 +41,14 @@ export class UpdateListService {
    */
   DeleteContact(listId: number, contactID: number): Promise<any> {
     return this._http.delete(`${environment.constants.apiUrl}/lists/${listId}/contacts/${contactID}`);
+  }
+
+  /**
+   * Deletes list from the server
+   * @param {number} listId
+   * @returns {Promise<any>}
+   */
+  EditContact(listId: number, contact: IContact): Promise<any> {
+    return this._http.put(`${environment.constants.apiUrl}/lists/${listId}/contacts/${contact.id}`, contact);
   }
 }

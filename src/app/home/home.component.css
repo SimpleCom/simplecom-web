@@ -1,0 +1,8 @@
+button.edit-list-button {
+  margin-right: 8px;
+}
+
+input.edited-list {
+  height: 46px;
+  width: 500px;
+}

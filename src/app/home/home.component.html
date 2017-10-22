@@ -28,10 +28,18 @@
 
     <div row class = "mt-4">
       <ul class="list-group" >
-        <!--{{jwt | json}}-->
-        <li *ngFor="let list of lists" class="list-group-item">
-          <span (click)="viewListDetails(list)" class="big-span hover pointer">{{ list.name }}</span>
-          <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
+        <li *ngFor="let list of lists; let i = index;" class="list-group-item">
+          <div *ngIf="editingList === list.id">
+            <form (ngSubmit)="saveEditedList(list)">
+              <input id="edit-list-{{i}}" type="text" class="edited-list" [(ngModel)]="list.name" [ngModelOptions]="{standalone: true}" />
+              <button (click)="saveEditedList(list)" type="submit" class="btn btn-success btn-lg right pointer edit-list-button"><i class="fa fa-check"></i></button>
+            </form>
+          </div>
+          <div *ngIf="editingList !== list.id">
+            <span (click)="viewListDetails(list)" class="big-span hover pointer">{{ list.name }}</span>
+            <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
+            <button (click)="editList(list)" class="btn btn-primary btn-lg right pointer edit-list-button"><i class="fa fa-pencil"></i></button>
+          </div>
         </li>
       </ul>
     </div>

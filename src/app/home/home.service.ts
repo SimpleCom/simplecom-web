@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { RestService } from "../../common/rest.service";
 import { environment } from "../../environments/environment";
 import { IListMember } from "../../interfaces/list-member.interface";
+import {IList} from "../../interfaces/list.interface";
 
 @Injectable()
 export class HomeService {
@@ -19,7 +20,7 @@ export class HomeService {
 
     return this._http.post(`${ environment.constants.apiUrl }/lists`, body);
   }
-  
+
   /**
    * Gets all lists from server
    * @returns {Promise<any>}
@@ -44,8 +45,8 @@ export class HomeService {
    * @returns {Promise<any>}
    * @constructor
    */
-  EditListName(listId: number, listName: string): Promise<any> {
-    return this._http.put(`${environment.constants.apiUrl}/${listId}`, {listName});
+  EditListName(list: IList): Promise<any> {
+    return this._http.put(`${environment.constants.apiUrl}/lists/${list.id}`, {name: list.name});
   }
 
   /**

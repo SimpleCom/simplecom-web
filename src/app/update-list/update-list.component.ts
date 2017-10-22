@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { UpdateListService } from "./update-list.service";
 import { AuthService } from '../../common/auth.service';
 
+import * as jwt from 'jwt-decode';
+import {IContact} from "../../interfaces/contacts.interface";
+
 @Component({
   selector: 'app-update-list',
   templateUrl: './update-list.component.html',
@@ -21,6 +24,7 @@ export class UpdateListComponent implements OnInit {
 
   private contacts: any = [];
   private listDetails: any = [];
+  public editingContact: number = -1;
 
   ngOnInit() {
     this._listService.GetListDetails(this.route.snapshot.params['id'])
@@ -47,6 +51,8 @@ export class UpdateListComponent implements OnInit {
          this._listService.GetListContacts(this.route.snapshot.params['id'])
          .then(response => {
            this.contacts = response.contacts;
+           this.listForm.controls.name.patchValue('');
+           this.listForm.controls.email.patchValue('');
           }).catch(e => {
           });
       }).catch(e => {
@@ -62,6 +68,22 @@ export class UpdateListComponent implements OnInit {
           }).catch(e => {
           });
       }).catch(e => {
+      });
+  }
+
+  editContact(contact: IContact) {
+    this.editingContact = contact.id;
+  }
+
+  saveContact(contact: IContact) {
+    console.log(contact);
+    this._listService.EditContact(this.route.snapshot.params['id'], contact)
+      .then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      }).then(non => {
+        this.editingContact = -1;
       });
   }
 }
