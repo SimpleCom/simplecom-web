@@ -2,7 +2,7 @@
 
 <h3 *ngIf="errorMesssage" class="text-danger">An error occured. Please try again later.</h3>
 
-<form [formGroup]="registerForm" (ngSubmit)="register()" (keydown)=>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <div class="form-group">
     <label for="username">Username</label>
     <input formControlName="username" type="text" class="form-control" id="username" maxlength="64">

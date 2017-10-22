@@ -7,6 +7,19 @@ import { IListMember } from "../../interfaces/list-member.interface";
 export class HomeService {
   constructor(private _http: RestService) {}
 
+    /**
+   * Add new list given a list name
+   * @param {string} listName
+   * @returns {Promise<any>}
+   */
+  AddNewList(listName: string): Promise<any> {
+    const body = {
+      "name": listName
+    }
+
+    return this._http.post(`${ environment.constants.apiUrl }/lists`, body);
+  }
+  
   /**
    * Gets all lists from server
    * @returns {Promise<any>}
