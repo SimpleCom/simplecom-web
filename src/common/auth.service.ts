@@ -13,7 +13,7 @@ export class AuthService {
   public token = new BehaviorSubject<string>('');
   public user = new BehaviorSubject<any>({});
 
-  constructor() { }
+  constructor() {}
 
   /**
    * Sets JWT token in token behavior subjecet
@@ -42,7 +42,6 @@ export class AuthService {
   setUser(token: string): void {
     if (token) {
       const encryptedToken = token;
-      console.log(token);
       const tokenPayload = JSON.parse(atob(encryptedToken.split('.')[1]));
       if (typeof tokenPayload === 'object') {
         this.user.next(tokenPayload);

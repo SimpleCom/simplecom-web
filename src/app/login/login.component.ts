@@ -34,7 +34,12 @@ export class LoginComponent {
     };
 
     this.loginService.Login(user)
-      .then(() => this.toastr.success('Login successful!', 'You\'re in!'))
+      .then((response) => {
+        console.log(response);
+        this.authService.setToken(response.jwt);
+        this.toastr.success('Login successful!', 'You\'re in!');
+        this.router.navigate(['/home']);
+      })
       .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
     );
   }
