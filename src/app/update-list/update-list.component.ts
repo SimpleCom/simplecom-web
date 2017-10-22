@@ -5,8 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { UpdateListService } from "./update-list.service";
 import { AuthService } from '../../common/auth.service';
 
-import * as jwt from 'jwt-decode';
-
 @Component({
   selector: 'app-update-list',
   templateUrl: './update-list.component.html',
@@ -27,7 +25,6 @@ export class UpdateListComponent implements OnInit {
   ngOnInit() {
     this._listService.GetListDetails(this.route.snapshot.params['id'])
      .then(response => {
-        console.log(response);
         this.listDetails = response;
       }).catch(e => {
       });
@@ -35,7 +32,6 @@ export class UpdateListComponent implements OnInit {
     this._listService.GetListContacts(this.route.snapshot.params['id'])
      .then(response => {
        this.contacts = response.contacts;
-        console.log(response);
       }).catch(e => {
       });
   }

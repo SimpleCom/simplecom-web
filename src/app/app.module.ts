@@ -8,7 +8,6 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { AppComponent } from './app.component';
 
-import { AddListComponent } from "./add-list/add-list.component";
 import { UpdateListComponent } from "./update-list/update-list.component";
 import { CodesComponent } from "./codes/codes.component";
 import { HistoryComponent } from "./history/history.component";
@@ -24,7 +23,6 @@ import { NavButtonsComponent } from './nav-buttons/nav-buttons.component';
 import { AuthService } from '../common/auth.service';
 import { AppService } from './app.service';
 import { AuthGuard } from '../common/auth-guard.service';
-import { AddListService } from "./add-list/add-list.service";
 import { JWTService } from "../common/jwt.service";
 import { RestService } from "../common/rest.service";
 import { HttpModule } from "@angular/http";
@@ -36,7 +34,6 @@ import { UploaderService } from "./uploader/uploader.service";
 @NgModule({
   declarations: [
     AppComponent,
-    AddListComponent,
     UpdateListComponent,
     CodesComponent,
     HistoryComponent,
@@ -63,7 +60,6 @@ import { UploaderService } from "./uploader/uploader.service";
     AppService,
     JWTService,
     RestService,
-    AddListService,
     HomeService,
     LoginService,
     RegisterService,

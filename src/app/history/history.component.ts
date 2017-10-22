@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class HistoryComponent {
   constructor() {}
-
-  something() {
-    
-  }
 }

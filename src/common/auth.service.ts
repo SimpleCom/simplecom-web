@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
 import 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 import { RestService } from "./rest.service";
-import {IJWT} from "../interfaces/jwt.interface";
+
+import { IJWT } from "../interfaces/jwt.interface";
 
 @Injectable()
 export class AuthService {
@@ -47,7 +50,6 @@ export class AuthService {
     } else {
       this.user.next({});
     }
-
   }
 
   /**
