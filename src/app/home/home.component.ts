@@ -15,7 +15,6 @@ import { IJWT } from "../../interfaces/jwt.interface";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-
 export class HomeComponent implements OnInit {
   constructor(public toastr: ToastsManager, private fb: FormBuilder, private router: Router, private homeService: HomeService, private _auth: AuthService) {
     this._auth.user.subscribe((user: IJWT) => {
@@ -32,9 +31,14 @@ export class HomeComponent implements OnInit {
   public addingList: boolean = false;
   public jwt: IJWT;
   public editingList: number = -1;
+  public loading = false;
 
   ngOnInit() {
-    this.homeService.GetAllLists().then((response) => this.lists = response);
+    this.loading = true;
+    this.homeService.GetAllLists().then((response) => {
+      this.lists = response;
+      this.loading = false;
+    });
   }
 
   toggleDropdown(){
