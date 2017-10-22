@@ -2,7 +2,7 @@
 
 <h3 *ngIf="errorMesssage" class="text-danger">An error occured. Please try again later.</h3>
 
-<form [formGroup]="registerForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()" (keydown)=>
   <div class="form-group">
     <label for="username">Username</label>
     <input formControlName="username" type="text" class="form-control" id="username" maxlength="64">
@@ -30,6 +30,7 @@
   </button>
 
   <button *ngIf="registering" (click)="register()" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
+  <p>{{ ErrorMessage }}</p>
 
   <div class="form-group">
     <small>Already have an account? <a routerLink="/login">Click here</a></small>

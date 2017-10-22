@@ -14,6 +14,8 @@ import { RegisterService } from './register.service';
 export class RegisterComponent {
   constructor(private toastr: ToastsManager, private router: Router, private fb: FormBuilder, private registerService: RegisterService) {}
 
+  private ErrorMessage: string = "";
+
   public registerForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
@@ -40,13 +42,15 @@ export class RegisterComponent {
         if (!response[0].error) {
           this.toastr.success('Registration Successful!', 'Success!');
           this.router.navigate(['/login']);
-        } else {
-          this.toastr.error('Registration Failed!', 'Error!');
         }
 
         this.registering = false;
       }).catch(e => {
         console.log(e);
       });
+  }
+
+  inspectForms(){
+    
   }
 }
