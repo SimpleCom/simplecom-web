@@ -21,7 +21,11 @@ export class CodesComponent implements OnInit {
   private inputSelected: number;
 
   ngOnInit() {
-    
+    this.codesService.getAllCodes()
+      .then((response) => {
+        this.fakeKeyValue = response.publicPasscode;
+        this.secureKeyValue = response.securePasscode;
+      })
   }
 
   setKeyCodeInput(whichInput) {
@@ -69,8 +73,8 @@ export class CodesComponent implements OnInit {
 
   setCodes(){
     const codes = {
-      "secure": this.secureKeyValue,
-      "public": this.fakeKeyValue
+      "securePasscode": this.secureKeyValue,
+      "publicPasscode": this.fakeKeyValue
     };
     
     this.codesService.AddNewCodes(codes)
