@@ -38,7 +38,8 @@ export class UploaderComponent implements OnInit {
       .then(res => {
         this._toast.success('Upload Succesful!', 'Success!');
       }).catch(err => {
-        this._toast.error('Upload Failed.', 'Error!');
+        console.log(err);
+        // this._toast.error('Upload Failed.', 'Error!');
       });
   }
 

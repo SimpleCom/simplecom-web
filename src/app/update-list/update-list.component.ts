@@ -28,14 +28,14 @@ export class UpdateListComponent implements OnInit {
      .then(response => {
         console.log(response);
       }).catch(e => {
-        alert(e);
+        console.log(e);
       });
 
     this._listService.GetListContacts(this.route.snapshot.params['id'])
      .then(response => {
         console.log(response);
       }).catch(e => {
-        alert(e);
+        console.log(e);
       });
   }
 
@@ -49,7 +49,7 @@ export class UpdateListComponent implements OnInit {
       .then(response => {
         console.log(response);
       }).catch(e => {
-        alert(e);
+        console.log(e);
       });
   }
 
@@ -61,7 +61,7 @@ export class UpdateListComponent implements OnInit {
   //       this.addingList = false;
   //       this.listForm.controls.name.patchValue('');
   //     }).catch(e => {
-  //       alert(e);
+  //       console.log(e);
   //     });
   // }
 }
