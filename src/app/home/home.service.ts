@@ -24,13 +24,6 @@ export class HomeService {
     return this._http.delete(`${environment.constants.apiUrl}/lists/${listId}`);
   }
 
-
-
-
-
-
-
-
   /**
    * Edits list name given a list ID
    * @param {number} listId

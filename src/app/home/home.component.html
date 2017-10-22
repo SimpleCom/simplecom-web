@@ -7,6 +7,7 @@
 
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
     <ul class="list-group">
+      <!--{{jwt | json}}-->
       <li *ngFor="let list of lists" class="list-group-item">
         <span (click)="viewListDetails(list)" class="big-span hover pointer">{{ list.name }}</span>
         <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>

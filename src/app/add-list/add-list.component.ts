@@ -34,7 +34,7 @@ export class AddListComponent implements OnInit {
         this.listForm.controls.name.patchValue('');
         this.toastr.success('List successfully created!', 'Success!')
       }).catch(e => {
-        this.toastr.error('List was not created.', 'Error!');
+        console.log(e);
       });
   }
 }

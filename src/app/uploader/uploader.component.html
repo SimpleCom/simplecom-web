@@ -7,6 +7,6 @@
 
       <small>{{ filePath }}</small>
     </div>
-    <button [disabled]="!filePath" type="submit" class="btn btn-primary">Submit</button>
+    <button [ngClass]="{'disabled': !filePath}" [disabled]="!filePath" type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

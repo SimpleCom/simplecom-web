@@ -3,13 +3,15 @@ import {Http, Headers, RequestOptionsArgs, RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Router } from "@angular/router";
 import {AuthService} from "./auth.service";
+import {IError} from "../interfaces/error.interface";
+import {ToastsManager} from "ng2-toastr";
 
 @Injectable()
 export class RestService {
 
   public token = '';
 
-  constructor(private _auth: AuthService, private _http: Http, private _router: Router) {
+  constructor(private _auth: AuthService, private _http: Http, private _router: Router, private _toast: ToastsManager) {
     this._auth.token.subscribe((token) => {
       this.token = token;
     });
@@ -25,9 +27,7 @@ export class RestService {
     return this._http.post(url, body, this.buildOptions())
       .map(res => res.json())
       .toPromise()
-      .catch(err => {
-        this.handleError(err);
-      });
+      .catch(err => this.handleError(err));
   }
 
   /**
@@ -39,9 +39,7 @@ export class RestService {
     return this._http.get(url, this.buildOptions())
       .map(res => res.json())
       .toPromise()
-      .catch(err => {
-        this.handleError(err);
-      });
+      .catch(err => this.handleError(err));
   }
 
   /**
@@ -53,9 +51,7 @@ export class RestService {
     return this._http.delete(url, this.buildOptions())
       .map(res => res.json())
       .toPromise()
-      .catch(err => {
-        this.handleError(err);
-      });
+      .catch(err => this.handleError(err));
   }
 
   /**
@@ -68,9 +64,7 @@ export class RestService {
     return this._http.put(url, body, this.buildOptions())
       .map(res => res.json())
       .toPromise()
-      .catch(err => {
-        this.handleError(err);
-      });
+      .catch(err => this.handleError(err));
   }
 
   /**
@@ -92,11 +86,9 @@ export class RestService {
    * @param error {any}
    * @returns {any}
    */
-  handleError(error: any): Observable<any> {
-    if (error.status === 401 || error.statusText === 'Missing auth token') {
-      this._router.navigate(['/login']);
-    } else {
-      return Observable.throw(error);
-    }
+  handleError(serverError: any): Promise<any> {
+    const error: IError = JSON.parse(serverError._body);
+    this._toast.error(error.message);
+    return Promise.reject(error);
   }
 }
