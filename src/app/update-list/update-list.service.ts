@@ -28,6 +28,17 @@ export class UpdateListService {
       "email": contact.email
     };
 
+    console.log('here');
+
     return this._http.post(`${ environment.constants.apiUrl }/lists/${ id }/contacts`, body);
+  }
+
+  /**
+   * Deletes list from the server
+   * @param {number} listId
+   * @returns {Promise<any>}
+   */
+  DeleteContact(listId: number, contactID: number): Promise<any> {
+    return this._http.delete(`${environment.constants.apiUrl}/lists/${listId}/contacts/${contactID}`);
   }
 }

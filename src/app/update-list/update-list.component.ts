@@ -21,21 +21,18 @@ export class UpdateListComponent implements OnInit {
     email: ['', Validators.required],
   });
 
-  // public addingList: boolean = false;
+  private contacts: any = [];
 
   ngOnInit() {
     this._listService.GetListDetails(this.route.snapshot.params['id'])
      .then(response => {
-        console.log(response);
       }).catch(e => {
-        console.log(e);
       });
 
     this._listService.GetListContacts(this.route.snapshot.params['id'])
      .then(response => {
-        console.log(response);
+       this.contacts = response.contacts;
       }).catch(e => {
-        console.log(e);
       });
   }
 
@@ -47,21 +44,24 @@ export class UpdateListComponent implements OnInit {
 
     this._listService.AddListContact(this.route.snapshot.params['id'], contact)
       .then(response => {
-        console.log(response);
+         this._listService.GetListContacts(this.route.snapshot.params['id'])
+         .then(response => {
+           this.contacts = response.contacts;
+          }).catch(e => {
+          });
       }).catch(e => {
-        console.log(e);
       });
   }
 
-  // saveNewList(): void {
-  //   this.addingList = true;
-
-  //   this._listService.AddNewList(this.listForm.value.name)
-  //     .then(response => {
-  //       this.addingList = false;
-  //       this.listForm.controls.name.patchValue('');
-  //     }).catch(e => {
-  //       console.log(e);
-  //     });
-  // }
+  deleteContact(contactID) {
+    this._listService.DeleteContact(this.route.snapshot.params['id'], contactID)
+      .then(response => {
+        this._listService.GetListContacts(this.route.snapshot.params['id'])
+         .then(response => {
+           this.contacts = response.contacts;
+          }).catch(e => {
+          });
+      }).catch(e => {
+      });
+  }
 }

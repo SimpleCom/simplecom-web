@@ -11,12 +11,6 @@
       <li *ngFor="let list of lists" class="list-group-item">
         <span (click)="viewListDetails(list)" class="big-span hover pointer">{{ list.name }}</span>
         <button (click)="deleteList(list)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button>
-
-        <div *ngFor="let contact of list.contacts">
-          <p>{{ contact.name }}</p>
-          <p>{{ contact.email }}</p>
-        </div>
-
       </li>
     </ul>
   </div>

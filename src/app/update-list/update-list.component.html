@@ -17,9 +17,18 @@
         <input formControlName="email" type="email" class="form-control" id="email" maxlength="96">
       </div>
 
-      <button (click)="saveNewContact()" type="submit" class="btn btn-primary" [disabled]="!listForm.value.name || !listForm.value.email">Add Contact</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!listForm.value.name || !listForm.value.email">Add Contact</button>
       <!-- <button *ngIf="!addingList" (click)="saveNewContact()" type="button" class="btn btn-primary" [disabled]="!listForm.value.name">Add</button> -->
       <!-- <button *ngIf="addingList" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button> -->
     </form>
+
+    <div *ngFor="let contact of contacts">
+      <div class="card">
+        <div class="card-body">
+          <h3>{{ contact.name }} <button (click)="deleteContact(contact.id)" class="btn btn-danger right pointer"><i class="fa fa-trash-o"></i></button></h3>
+          <p>{{ contact.email }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
