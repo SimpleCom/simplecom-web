@@ -29,8 +29,8 @@ export class LoginComponent {
     const password: string = this.loginForm.value.password;
 
     const user = {
-      "uname": username,
-      "pass": password
+      'uname': username,
+      'pass': password
     };
 
     this.loginService.Login(user)
