@@ -1,0 +1,52 @@
+<h1>Edit User</h1>
+<a [routerLink]="['/users']"><small>Go Back</small></a>
+<hr>
+<form [formGroup]="editUserForm" (ngSubmit)="editUser()" >
+  <div class="form-group">
+    <label for="uname">Username</label>
+    <input formControlName="uname" type="text" class="form-control" id="uname">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input formControlName="password" type="password" class="form-control" id="password">
+  </div>
+
+  <div class="form-group">
+    <label for="userTypeID">User Type</label>
+    <select class="form-control" formControlName="userTypeID" id="userTypeID">
+        <option value="-1">Select One</option>
+        <option *ngFor="let userType of userTypes" [value]="userType.id">{{userType.name}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+    <label for="organizationID">Organization</label>
+    <select class="form-control" formControlName="organizationID" id="organizationID">
+      <option value="-1">Select One</option>
+      <option *ngFor="let organization of organizations" [value]="organization.id">{{organization.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="securePasscode">Secure Passcode</label>
+    <input formControlName="securePasscode" type="text" class="form-control" id="securePasscode">
+  </div>
+
+  <div class="form-group">
+    <label for="publicPasscode">Public Passcode</label>
+    <input formControlName="publicPasscode" type="text" class="form-control" id="publicPasscode">
+  </div>
+
+  <div class="form-group">
+    <label for="distressPasscode">Distress Passcode</label>
+    <input formControlName="distressPasscode" type="text" class="form-control" id="distressPasscode">
+  </div>
+  
+  <button *ngIf="!editingUser" (click)="editUser()" type="button" class="btn btn-primary pointer" 
+    [disabled]="!editUserForm.valid">Edit User
+  </button>
+
+    <button *ngIf="editingUser" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
+
+</form>

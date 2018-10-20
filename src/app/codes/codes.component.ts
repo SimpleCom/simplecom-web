@@ -15,38 +15,43 @@ import { CodesService } from './codes.service';
 
 export class CodesComponent implements OnInit {
   constructor(private fb: FormBuilder, private toastr: ToastsManager, private route: ActivatedRoute, private codesService: CodesService) {}
-  private dropdownDisplay: boolean = false;
-  private loading: boolean = false;
-  private settingCodes: boolean = false;
-  private secureKeyValue: string = "";
-  private fakeKeyValue: string = "";
-  private inputSelected: number;
+  public dropdownDisplay: boolean = false;
+  public loading: boolean = false;
+  public settingCodes: boolean = false;
+  public secureKeyValue: string = '';
+  public fakeKeyValue: string = '';
+  public distressKeyValue: string = '';
+  public inputSelected: number;
 
   ngOnInit() {
     this.loading = true;
-    this.codesService.getAllCodes()
-      .then((response) => {
-        if (response.publicPasscode !== null){
-          this.fakeKeyValue = response.publicPasscode;
+    this.codesService.getAllCodes().then(res => {
+      if (res && res.success) {
+        if (res.data.publicPasscode !== null) {
+          this.fakeKeyValue = res.data.publicPasscode;
         }
-        if (response.securePasscode !== null){
-          this.secureKeyValue = response.securePasscode;
+        if (res.data.securePasscode !== null) {
+          this.secureKeyValue = res.data.securePasscode;
         }
-        
-        this.loading = false;
-      })
-
+        if (res.data.distressPasscode !== null) {
+          this.distressKeyValue = res.data.distressPasscode;
+        }
+      } else {
+        // TODO: error handling
+      }
+      this.loading = false;
+    });
   }
 
   setKeyCodeInput(whichInput) {
     this.inputSelected = whichInput;
   }
 
-  showDropdown(){
+  showDropdown() {
     this.dropdownDisplay = !this.dropdownDisplay;
   }
 
-  randomizeKeys(){
+  randomizeKeys() {
     this.secureKeyValue = this.generateKey();
     this.fakeKeyValue = this.generateKey();
   }
@@ -57,7 +62,7 @@ export class CodesComponent implements OnInit {
     }
 
     if (this.inputSelected === 0 && key === -1) {
-      this.secureKeyValue = this.secureKeyValue.slice(0, this.secureKeyValue.length -1);
+      this.secureKeyValue = this.secureKeyValue.slice(0, this.secureKeyValue.length - 1);
     }
 
     if (this.inputSelected === 1 && this.fakeKeyValue.length < 6 && key !== -1) {
@@ -65,7 +70,15 @@ export class CodesComponent implements OnInit {
     }
 
     if (this.inputSelected === 1 && key === -1) {
-      this.fakeKeyValue = this.fakeKeyValue.slice(0, this.fakeKeyValue.length -1);
+      this.fakeKeyValue = this.fakeKeyValue.slice(0, this.fakeKeyValue.length - 1);
+    }
+
+    if (this.inputSelected === 2 && this.distressKeyValue.length < 6 && key !== -1) {
+      this.distressKeyValue += key;
+    }
+
+    if (this.inputSelected === 2 && key === -1) {
+      this.distressKeyValue = this.distressKeyValue.slice(0, this.distressKeyValue.length - 1);
     }
   }
 
@@ -74,9 +87,9 @@ export class CodesComponent implements OnInit {
     this.secureKeyValue = '';
   }
 
-  generateKey(){
-    const dictionary = "0123456789ABCDEF";
-    let key = "";
+  generateKey() {
+    const dictionary = '0123456789ABCDEF';
+    let key = '';
 
     for (let i = 0; i < 6; i++){
       key += dictionary.charAt(Math.floor(Math.random() * dictionary.length));
@@ -89,19 +102,20 @@ export class CodesComponent implements OnInit {
     console.log(e.key);
   }
 
-  setCodes(){
-    if(this.secureKeyValue.length < 6 || this.fakeKeyValue.length < 6){
+  setCodes() {
+    if (this.secureKeyValue.length < 6 || this.fakeKeyValue.length < 6 || this.distressKeyValue.length < 6) {
       this.toastr.error('Invalid key. Secure key and fake key must be 6 characters.');
       return;
     }
-    if (!this.secureKeyValue.match(/[a-z]/i) || !this.fakeKeyValue.match(/[a-z]/i)) {
+    if (!this.secureKeyValue.match(/[a-z]/i) || !this.fakeKeyValue.match(/[a-z]/i) || !this.distressKeyValue.match(/[a-z]/i)) {
       this.toastr.error('Keys require numbers and letters.');
       return;
-  }
+    }
     this.settingCodes = true;
     const codes = {
-      "securePasscode": this.secureKeyValue,
-      "publicPasscode": this.fakeKeyValue
+      'securePasscode': this.secureKeyValue,
+      'publicPasscode': this.fakeKeyValue,
+      'distressPasscode': this.distressKeyValue,
     };
 
     this.codesService.AddNewCodes(codes)

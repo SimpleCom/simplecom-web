@@ -1,36 +1,31 @@
-<h1>Register</h1>
-<div class= "row"> 
-  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
-    <nav-buttons></nav-buttons> 
+<h1>New User</h1>
+
+<h3 *ngIf="errorMesssage" class="text-danger">An error occured. Please try again later.</h3>
+
+<form [formGroup]="registerForm" (ngSubmit)="register()" (keyup)="inspectForms()">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input formControlName="username" type="text" class="form-control" id="username" maxlength="64">
   </div>
-  <h3 *ngIf="errorMesssage" class="text-danger">An error occured. Please try again later.</h3>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input formControlName="password" type="password" class="form-control" id="password" maxlength="64">
+  </div>
+
+  <div class="form-group">
+    <label for="re-password">Re-Type Password</label>
+    <input formControlName="repassword" type="password" class="form-control" id="re-password" maxlength="64">
+  </div>
   
-  <form [formGroup]="registerForm" (ngSubmit)="register()" (keyup)="inspectForms()">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input formControlName="username" type="text" class="form-control" id="username" maxlength="64">
-    </div>
   
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input formControlName="password" type="password" class="form-control" id="password" maxlength="64">
-    </div>
-  
-    <div class="form-group">
-      <label for="re-password">Re-Type Password</label>
-      <input formControlName="repassword" type="password" class="form-control" id="re-password" maxlength="64">
-    </div>
-    
-   
-      <button *ngIf="!registering" (click)="register()" type="button" class="btn btn-primary pointer" 
-        [disabled]="(!registerForm.value.username || !registerForm.value.password || !registerForm.value.repassword) || 
-        (registerForm.value.password !== registerForm.value.repassword)">Register
-      </button>
-  
-      <button *ngIf="registering" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
-  
-      <p class="d-inline text-danger ml-1">{{ ErrorMessage }}</p>
-  
-  </form>
-  
-</div>
+    <button *ngIf="!registering" (click)="register()" type="button" class="btn btn-primary pointer" 
+      [disabled]="(!registerForm.value.username || !registerForm.value.password || !registerForm.value.repassword) || 
+      (registerForm.value.password !== registerForm.value.repassword)">Register
+    </button>
+
+    <button *ngIf="registering" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
+
+    <p class="d-inline text-danger ml-1">{{ ErrorMessage }}</p>
+
+</form>

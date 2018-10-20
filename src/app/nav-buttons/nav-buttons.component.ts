@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../common/auth.service';
+import { IJWT } from '../../interfaces/jwt.interface';
 
 @Component({
   selector: 'nav-buttons',
@@ -9,10 +10,23 @@ import { AuthService } from '../../common/auth.service';
   styleUrls: ['./nav-buttons.component.css']
 })
 export class NavButtonsComponent {
-  constructor(private router: Router, private authService: AuthService) {}
+  public user: IJWT;
+  public isAdmin: boolean = false;
+
+  constructor(private _router: Router, private _authService: AuthService) {
+    this._authService.user.subscribe(user => {
+      this.user = user;
+      // user id 2 = admin
+      if (this.user.userTypeID === 2) {
+        this.isAdmin = true;
+      }
+    });
+  }
+
   
   logout() {
-    this.authService.setToken('');
-    this.router.navigate(['/login']);
+    this._authService.setToken('');
+    this._authService.setUser(undefined);
+    this._router.navigate(['/login']);
   }
 }

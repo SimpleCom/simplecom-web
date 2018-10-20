@@ -1,107 +1,106 @@
 <h1>Set Codes</h1>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
-    <nav-buttons></nav-buttons> 
-  </div>
+<div *ngIf="loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+  <h1 class="text-center">Loading... <i class="fa fa-circle-o-notch fa-spin fa-1x"></i></h1>
+</div>
 
-  <div *ngIf="loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
-    <h1 class="text-center">Loading... <i class="fa fa-circle-o-notch fa-spin fa-1x"></i></h1>
-  </div>
+<div *ngIf="!loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10"> 
+  <div class="row">
+    <form (keydown)="showKeyCodeBorder($event)" class="form-horizontal">
+      <div class="form-group">
+        <label for="Secure Key">Secure Key</label>
+        <input (click)="setKeyCodeInput(0)" type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="" value="{{ secureKeyValue }}" readonly>
+      </div>
 
-  <div *ngIf="!loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10"> 
-    <div class="row">
-      <form (keydown)="showKeyCodeBorder($event)" class="form-horizontal">
-        <div class="form-group">
-          <label for="Secure Key">Secure Key</label>
-          <input (click)="setKeyCodeInput(0)" type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="" value="{{ secureKeyValue }}" readonly>
-        </div>
+      <div class="form-group">
+        <label for="Fake Key">Fake Key</label>
+        <input (click)="setKeyCodeInput(1)" type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="" value="{{ fakeKeyValue }}" readonly>
+      </div>
 
-        <div class="form-group">
-          <label for="Fake Key">Fake Key</label>
-          <input (click)="setKeyCodeInput(1)" type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="" value="{{ fakeKeyValue }}" readonly>
-        </div>
+      <div class="form-group">
+        <label for="Fake Key">Distress Key</label>
+        <input (click)="setKeyCodeInput(2)" type="text" name="Distress Key" id="Distress Key" class="form-control" placeholder="" value="{{ distressKeyValue }}" readonly>
+      </div>
 
-        <button (click)="setKeyCode(0)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">0
-        </button>
+      <button (click)="setKeyCode(0)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">0
+      </button>
 
-        <button (click)="setKeyCode(1)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">1
-        </button>
+      <button (click)="setKeyCode(1)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">1
+      </button>
 
-        <button (click)="setKeyCode(2)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">2
-        </button>
+      <button (click)="setKeyCode(2)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">2
+      </button>
 
-        <button (click)="setKeyCode(3)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">3
-        </button>
+      <button (click)="setKeyCode(3)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">3
+      </button>
 
-        <br>
+      <br>
 
-        <button (click)="setKeyCode(4)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">4
-        </button>
+      <button (click)="setKeyCode(4)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">4
+      </button>
 
-        <button (click)="setKeyCode(5)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">5
-        </button>
+      <button (click)="setKeyCode(5)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">5
+      </button>
 
-        <button (click)="setKeyCode(6)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">6
-        </button>
+      <button (click)="setKeyCode(6)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">6
+      </button>
 
-        <button (click)="setKeyCode(7)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">7
-        </button>
+      <button (click)="setKeyCode(7)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">7
+      </button>
 
-        <br>
+      <br>
 
-        <button (click)="setKeyCode(8)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">8
-        </button>
+      <button (click)="setKeyCode(8)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">8
+      </button>
 
-        <button (click)="setKeyCode(9)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">9
-        </button>
+      <button (click)="setKeyCode(9)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">9
+      </button>
 
-        <button (click)="setKeyCode('A')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">A
-        </button>
+      <button (click)="setKeyCode('A')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">A
+      </button>
 
-        <button (click)="setKeyCode('B')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">B
-        </button>
+      <button (click)="setKeyCode('B')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">B
+      </button>
 
-        <br>
-        
-        <button (click)="setKeyCode('C')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">C
-        </button>
+      <br>
+      
+      <button (click)="setKeyCode('C')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">C
+      </button>
 
-        <button (click)="setKeyCode('D')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">D
-        </button>
+      <button (click)="setKeyCode('D')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">D
+      </button>
 
-        <button (click)="setKeyCode('E')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">E
-        </button>
+      <button (click)="setKeyCode('E')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">E
+      </button>
 
-        <button (click)="setKeyCode('F')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6">F
-        </button>
+      <button (click)="setKeyCode('F')" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length >= 6 && fakeKeyValue.length >= 6 && distressKeyValue.length >= 6">F
+      </button>
 
-        <button (click)="setKeyCode(-1)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
-          [disabled]="secureKeyValue.length == 0 && fakeKeyValue.length == 0"><
-        </button>
+      <button (click)="setKeyCode(-1)" type="button" class="btn btn-secondary btn-lg keypad mb-1" 
+        [disabled]="secureKeyValue.length == 0 && fakeKeyValue.length == 0 && distressKeyValue.length == 0"><
+      </button>
 
-        <div class="form-group">
-          <button type="button" (click)="setCodes()" class="btn btn-primary">Set Codes</button>
-          <button type="button" (click)="clearCodes()" class="btn btn-danger">Clear Codes</button>
-          <button type="button" (click)="randomizeKeys()" class="btn btn-info">Randomize</button>
-        </div>
-      </form>
-    </div>
+      <div class="form-group">
+        <button type="button" (click)="setCodes()" class="btn btn-primary">Set Codes</button>
+        <button type="button" (click)="clearCodes()" class="btn btn-danger">Clear Codes</button>
+        <button type="button" (click)="randomizeKeys()" class="btn btn-info">Randomize</button>
+      </div>
+    </form>
   </div>
 </div>

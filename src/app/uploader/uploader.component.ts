@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UploaderService } from "./uploader.service";
-import { FormBuilder, Validators } from "@angular/forms";
-import { ToastsManager } from "ng2-toastr";
-import { environment } from "../../environments/environment";
+import { Component, OnInit, Input } from '@angular/core';
+import { UploaderService } from './uploader.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr';
+import { environment } from '../../environments/environment';
+import { IOrganization } from '../../interfaces/organizations.interface';
 
 @Component({
   selector: 'page-uploader',
@@ -10,6 +11,8 @@ import { environment } from "../../environments/environment";
   styleUrls: ['./uploader.component.css']
 })
 export class UploaderComponent implements OnInit {
+
+  @Input('organization') organization: IOrganization;
 
   public uploaderForm = this.fb.group({
     file: ['', Validators.required],
@@ -34,7 +37,8 @@ export class UploaderComponent implements OnInit {
   }
 
   UploadFile() {
-    this._uploaderService.UploadFile()
+    // TODO: add user
+    this._uploaderService.UploadFile(1)
       .then(res => {
         this._toast.success('Upload Succesful!', 'Success!');
         this.filePath = '';

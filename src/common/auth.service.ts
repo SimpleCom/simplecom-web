@@ -4,14 +4,12 @@ import { Router } from '@angular/router';
 import 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { RestService } from "./rest.service";
-
-import { IJWT } from "../interfaces/jwt.interface";
+import { IJWT } from '../interfaces/jwt.interface';
 
 @Injectable()
 export class AuthService {
   public token = new BehaviorSubject<string>('');
-  public user = new BehaviorSubject<any>({});
+  public user = new BehaviorSubject<any>(undefined);
 
   constructor() {}
 
@@ -47,7 +45,7 @@ export class AuthService {
         this.user.next(tokenPayload);
       }
     } else {
-      this.user.next({});
+      this.user.next(undefined);
     }
   }
 

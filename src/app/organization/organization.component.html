@@ -1,0 +1,55 @@
+<h1>Organizations</h1>
+
+<div *ngIf="loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+  <h1 class="text-center">Loading... <i class="fa fa-circle-o-notch fa-spin fa-1x"></i></h1>
+</div>
+
+<div *ngIf="!loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+  <button type="button" (click)="toggleDropdown()" class="btn btn-primary pointer mb-3">
+    <i *ngIf="!dropdownDisplay" class="fa fa-plus"></i>
+    <i *ngIf="dropdownDisplay" class="fa fa-minus"></i>
+    &nbsp;Add Organization
+  </button>
+
+  <div *ngIf="dropdownDisplay">
+    <form [formGroup]="organizationForm" (ngSubmit)="saveNewOrganization()">
+      <div class="form-group">
+        <input formControlName="name" type="text" class="form-control" id="username" maxlength="30" placeholder="New organization name">
+      </div>
+
+      <button *ngIf="!addingOrg" (click)="saveNewOrganization()" type="button" class="btn btn-primary" [disabled]="!organizationForm.value.name">Add</button>
+      <button *ngIf="addingOrg" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
+    </form>
+  </div>
+
+  <div class="mt-4">
+    <ul class="list-group" >
+      <li *ngFor="let organization of organizations; let i = index;" class="list-group-item">
+
+        <div *ngIf="editingOrg === organization.id">
+          <form (ngSubmit)="saveEditedOrganization(organization)">
+            <input id="edit-list-{{i}}" type="text" class="edited-list" [(ngModel)]="organization.name" [ngModelOptions]="{standalone: true}" maxlength="30">
+            <button type="submit" class="btn btn-success btn-lg right pointer edit-list-button"><i class="fa fa-check"></i></button>
+            <page-uploader [organization]="organization"></page-uploader>
+          </form>
+        </div>
+
+        <div *ngIf="editingOrg !== organization.id">
+
+          <div class="row">
+            <div class="col-md-9 hover pointer" (click)="viewListDetails(list)">
+              <span (click)="viewListDetails(list)" class="big-span">{{ organization.name }}</span>
+            </div>
+
+            <div class="col-md-3">
+              <!-- TODO: circle back around and see if this is something we want to do -->
+              <!-- <button (click)="deleteOrganization(organization)" class="btn btn-danger btn-lg right pointer"><i class="fa fa-trash-o"></i></button> -->
+              <button (click)="editOrganization(organization)" class="btn btn-primary btn-lg right pointer edit-list-button"><i class="fa fa-pencil"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+</div>

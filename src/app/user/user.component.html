@@ -1,0 +1,27 @@
+<h1>Users</h1>
+
+<button class="btn btn-primary" (click)="addUser()">Add User</button>
+<hr />
+<table class="table table-condensed table-striped table-bordered">
+  <tr>
+    <th>Status</th>
+    <th>Name</th>
+    <th>Organization</th>
+    <th>Edit</th>
+    <th>Deactivate</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>
+      <span class="badge badge-success" *ngIf="user.status === 1">Active</span>
+      <span class="badge badge-danger" *ngIf="user.status === 0">Inactive</span>
+    </td>
+    <td>{{user.uname}}</td>
+    <td>{{user.name}}</td>
+    <td><button (click)="editUser(user)" class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>
+    <td>
+      <button *ngIf="user.status === 0" (click)="reactivateUser(user)" class="btn btn-success"><i class="fa fa-check"></i></button>
+      <button *ngIf="user.status === 1" (click)="deactivateUser(user)" class="btn btn-danger"><i class="fa fa-close"></i></button>
+    </td>
+  </tr>
+  
+</table>
