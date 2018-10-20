@@ -26,6 +26,7 @@ export class RegisterComponent {
   private errorMesssage: string = '';
 
   register() {
+
     this.registering = true;
 
     const username: string = this.registerForm.value.username;
@@ -38,8 +39,10 @@ export class RegisterComponent {
 
     this.registerService.Register(user)
       .then(() => {
-        this.toastr.success('Registration successful!', 'Success')
-        this.router.navigate(['/login']);
+        this.toastr.success('Registration successful!', 'Success');
+        this.registerForm.controls.username.patchValue('');
+        this.registerForm.controls.password.patchValue('');
+        this.registerForm.controls.repassword.patchValue('');
         this.registering = false;
       }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'))
   }

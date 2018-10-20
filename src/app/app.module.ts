@@ -31,6 +31,7 @@ import { LoginService } from "./login/login.service";
 import { RegisterService } from "./register/register.service";
 import { UploaderService } from "./uploader/uploader.service";
 import {LogoService} from "./logo/logo.service";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {LogoService} from "./logo/logo.service";
     NotFoundComponent,
     NavButtonsComponent,
     UploaderComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

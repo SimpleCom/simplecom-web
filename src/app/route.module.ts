@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './404/404.component';
 
 import { AuthGuard } from '../common/auth-guard.service';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'history', canActivate: [ AuthGuard ], component: HistoryComponent },
   { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'change-password', canActivate: [ AuthGuard ], component: ChangePasswordComponent },
   { path: 'logo', canActivate: [ AuthGuard ], component: LogoComponent },
   { path: 'register', canActivate: [ AuthGuard ], component: RegisterComponent  },
   { path: 'update/:id', canActivate: [ AuthGuard ], component: UpdateListComponent },
