@@ -16,7 +16,5 @@
   <button *ngIf="!loggingIn" (click)="login()" type="submit" class="btn btn-primary pointer" [disabled]="!loginForm.value.username || !loginForm.value.password">Login</button>
   <button *ngIf="loggingIn" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
 
-  <div class="form-group">
-    <small>Don't have an account? <a routerLink="/register">Click here</a></small>
-  </div>
+
 </form>

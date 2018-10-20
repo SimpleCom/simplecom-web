@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logo', canActivate: [ AuthGuard ], component: LogoComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', canActivate: [ AuthGuard ], component: RegisterComponent  },
   { path: 'update/:id', canActivate: [ AuthGuard ], component: UpdateListComponent },
   { path: '**', redirectTo: '404' },
   { path: '404', component: NotFoundComponent },

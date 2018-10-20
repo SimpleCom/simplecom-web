@@ -26,8 +26,13 @@ export class CodesComponent implements OnInit {
     this.loading = true;
     this.codesService.getAllCodes()
       .then((response) => {
-        this.fakeKeyValue = response.publicPasscode;
-        this.secureKeyValue = response.securePasscode;
+        if (response.publicPasscode !== null){
+          this.fakeKeyValue = response.publicPasscode;
+        }
+        if (response.securePasscode !== null){
+          this.secureKeyValue = response.securePasscode;
+        }
+        
         this.loading = false;
       })
 
@@ -85,6 +90,14 @@ export class CodesComponent implements OnInit {
   }
 
   setCodes(){
+    if(this.secureKeyValue.length < 6 || this.fakeKeyValue.length < 6){
+      this.toastr.error('Invalid key. Secure key and fake key must be 6 characters.');
+      return;
+    }
+    if (!this.secureKeyValue.match(/[a-z]/i) || !this.fakeKeyValue.match(/[a-z]/i)) {
+      this.toastr.error('Keys require numbers and letters.');
+      return;
+  }
     this.settingCodes = true;
     const codes = {
       "securePasscode": this.secureKeyValue,
