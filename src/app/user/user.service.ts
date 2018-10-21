@@ -33,4 +33,8 @@ export class UserService {
     return this._rest.get(`${environment.constants.apiUrl}/user/types`);
   }
 
+  changeUserPassword(userId: number | string, password: string): Promise<any> {
+    return this._rest.put(`${environment.constants.apiUrl}/user/${userId}/password`, {password});
+  }
+
 }

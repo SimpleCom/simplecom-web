@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { ToastsManager } from 'ng2-toastr';
 
-import { UpdateListService } from "./update-list.service";
+import { UpdateListService } from './update-list.service';
 import { AuthService } from '../../common/auth.service';
 
-import { IContact } from "../../interfaces/contacts.interface";
+import { IContact } from '../../interfaces/contacts.interface';
 
 @Component({
   selector: 'app-update-list',
@@ -40,8 +40,8 @@ export class UpdateListComponent implements OnInit {
 
   saveNewContact() {
     const contact = {
-      "name": this.listForm.value.name,
-      "email": this.listForm.value.email
+      'name': this.listForm.value.name,
+      'email': this.listForm.value.email
     };
 
     this._listService.AddListContact(this.route.snapshot.params['id'], contact)
@@ -51,6 +51,7 @@ export class UpdateListComponent implements OnInit {
           this.contacts = response.contacts;
           this.listForm.controls.name.patchValue('');
           this.listForm.controls.email.patchValue('');
+          this.toastr.success('Saved new contact');
           }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
         );
       }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')

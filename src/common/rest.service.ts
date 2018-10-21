@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptionsArgs, RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Router } from "@angular/router";
-import {AuthService} from "./auth.service";
-import {IError} from "../interfaces/error.interface";
-import {ToastsManager} from "ng2-toastr";
+import { Router } from '@angular/router';
+import {AuthService} from './auth.service';
+import {IError} from '../interfaces/error.interface';
+import {ToastsManager} from 'ng2-toastr';
 
 @Injectable()
 export class RestService {

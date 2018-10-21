@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'organizations', canActivate: [ AuthGuard ], component: OrganizationComponent  },
   { path: 'users', canActivate: [ AuthGuard ], component: UserComponent  },
   { path: 'users/:id', canActivate: [ AuthGuard ], component: EditUserComponent  },
-  { path: 'update/:id', canActivate: [ AuthGuard ], component: UpdateListComponent },
+  { path: 'list/:id', canActivate: [ AuthGuard ], component: UpdateListComponent },
   { path: '**', redirectTo: '404' },
   { path: '404', component: NotFoundComponent },
 ];

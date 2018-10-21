@@ -73,7 +73,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   viewListDetails(list) {
-    this.router.navigate(['/update/', list.id]);
+    this.router.navigate(['/list/', list.id]);
   }
 
   deleteList(list) {
