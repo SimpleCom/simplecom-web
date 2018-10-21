@@ -17,8 +17,7 @@ export class UploaderComponent implements OnInit {
   public uploaderForm = this.fb.group({
     file: ['', Validators.required],
   });
-
-  public filePath: string = '';
+  public hasFile: boolean = false;
 
   constructor(private _uploaderService: UploaderService, private fb: FormBuilder, private _toast: ToastsManager) {}
 
@@ -26,27 +25,26 @@ export class UploaderComponent implements OnInit {
 
   ChangeFile(event) {
     if (!environment.constants.acceptedImageTypes.filter(type => type === event.target.files[0].type).length) {
-      this.filePath = '';
       this._uploaderService.files = null;
       this._toast.error('Incorrect image type');
       return;
     }
-    this.filePath = event.target.value;
+    this.hasFile = true;
     this._uploaderService.files = event.target.files;
     // console.log(event.target.files);
   }
 
   UploadFile() {
     // TODO: add user
-    this._uploaderService.UploadFile(1)
+    this._uploaderService.UploadFile(this.organization.id)
       .then(res => {
+        console.log(res);
         this._toast.success('Upload Succesful!', 'Success!');
-        this.filePath = '';
         this._uploaderService.files = null;
       }).catch(err => {
         console.log(err);
         // this._toast.error('Upload Failed.', 'Error!');
-      });
+      }).then(non => this.hasFile = false);
   }
 
 }

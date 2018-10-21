@@ -9,13 +9,13 @@ export class UploaderService {
   public files: FileList;
   constructor(private _http: RestService) {}
 
-  UploadFile(userId: string | number): Promise<any> {
+  UploadFile(organizationId: string | number): Promise<any> {
     const fileList: FileList = this.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
       const formData: FormData = new FormData();
       formData.append('uploadFile', file, file.name);
-      return this._http.post(`${environment.constants.apiUrl}/user/${userId}/logo`, formData);
+      return this._http.post(`${environment.constants.apiUrl}/organization/${organizationId}/logo`, formData);
     }
   }
 }

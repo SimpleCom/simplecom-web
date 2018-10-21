@@ -1,13 +1,11 @@
-<h4>Set Organization Logo ({{organization.name}})</h4>
+<strong>Set Logo</strong>
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10">
   <form [formGroup]="uploaderForm" (ngSubmit)="UploadFile()">
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 0;">
       <label class="btn btn-secondary">
         Upload <input (change)="ChangeFile($event)" formControlName="file" type="file" class="inputfile">
       </label>
-
-      <small>{{ filePath }}</small>
+      <button *ngIf="hasFile" type="submit" class="btn btn-primary">Submit</button>
     </div>
-    <button [ngClass]="{'disabled': !filePath}" [disabled]="!filePath" type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

@@ -30,7 +30,9 @@
           <form (ngSubmit)="saveEditedOrganization(organization)">
             <input id="edit-list-{{i}}" type="text" class="edited-list" [(ngModel)]="organization.name" [ngModelOptions]="{standalone: true}" maxlength="30">
             <button type="submit" class="btn btn-success btn-lg right pointer edit-list-button"><i class="fa fa-check"></i></button>
-            <page-uploader [organization]="organization"></page-uploader>
+            <div style="margin-top: 10px;">
+              <page-uploader [organization]="organization"></page-uploader>            
+            </div>
           </form>
         </div>
 
