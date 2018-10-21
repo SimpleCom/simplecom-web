@@ -55,10 +55,12 @@
                   <tr>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Delete</th>
                   </tr>
                   <tr *ngFor="let contact of list.contacts">
                     <td>{{contact.name}}</td>
                     <td>{{contact.email}}</td>
+                    <td><button class="btn btn-danger" (click)="removeContactFromList(list, contact)"><i class="fa fa-close"></i></button></td>
                   </tr>
                 </table>
               </div>

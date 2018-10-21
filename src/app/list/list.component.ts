@@ -94,4 +94,15 @@ export class ListComponent implements OnInit, OnDestroy {
       .then(non => this.editingList = -1
     );
   }
+
+  removeContactFromList(list: IList, contact: any) {
+    console.log(list.id, contact.id);
+    this.listService.DeleteMemberFromList(list.id, contact.id).then(res => {
+      if (res && res.success) {
+        this.getAllLists();
+      } else {
+        this.toastr.error('Unable to remove contact from list.');
+      }
+    });
+  }
 }

@@ -87,8 +87,8 @@ export class RestService {
    * @returns {any}
    */
   handleError(serverError: any): Promise<any> {
-    const error: IError = JSON.parse(serverError._body);
-    this._toast.error(error.message);
+    const error: any = JSON.parse(serverError._body);
+    this._toast.error(error.error);
     return Promise.reject(error);
   }
 }

@@ -69,7 +69,7 @@ export class ListService {
    * @returns {Promise<any>}
    */
   DeleteMemberFromList(listId: number, memberId: number): Promise<any> {
-    return this._http.delete(`${environment.constants.apiUrl}/${listId}/${memberId}`);
+    return this._http.delete(`${environment.constants.apiUrl}/lists/${listId}/contacts/${memberId}`);
   }
 
   /**
