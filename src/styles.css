@@ -14,3 +14,7 @@
 .hover:hover {
   color: #ddd;
 }
+
+.required {
+  color: red;
+}

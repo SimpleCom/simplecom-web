@@ -1,9 +1,9 @@
 <h1>Edit User</h1>
 <a [routerLink]="['/users']"><small>Go Back</small></a>
-<hr>
+<hr />
 <form [formGroup]="editUserForm" (ngSubmit)="editUser()" >
   <div class="form-group">
-    <label for="uname">Username</label>
+    <label for="uname">Username <small class="required">*</small></label>
     <input formControlName="uname" type="text" class="form-control" id="uname">
   </div>
 
@@ -13,7 +13,7 @@
   </div>
 
   <div class="form-group">
-    <label for="userTypeID">User Type</label>
+    <label for="userTypeID">User Type  <small class="required">*</small></label>
     <select class="form-control" formControlName="userTypeID" id="userTypeID">
         <option value="-1">Select One</option>
         <option *ngFor="let userType of userTypes" [value]="userType.id">{{userType.name}}</option>
@@ -21,7 +21,7 @@
   </div>
 
   <div class="form-group">
-    <label for="organizationID">Organization</label>
+    <label for="organizationID">Organization  <small class="required">*</small></label>
     <select class="form-control" formControlName="organizationID" id="organizationID">
       <option value="-1">Select One</option>
       <option *ngFor="let organization of organizations" [value]="organization.id">{{organization.name}}</option>
@@ -29,22 +29,22 @@
   </div>
 
   <div class="form-group">
-    <label for="securePasscode">Secure Passcode</label>
+    <label for="securePasscode">Secure Passcode  <small class="required">*</small></label>
     <input formControlName="securePasscode" type="text" class="form-control" id="securePasscode">
   </div>
 
   <div class="form-group">
-    <label for="publicPasscode">Public Passcode</label>
+    <label for="publicPasscode">Public Passcode  <small class="required">*</small></label>
     <input formControlName="publicPasscode" type="text" class="form-control" id="publicPasscode">
   </div>
 
   <div class="form-group">
-    <label for="distressPasscode">Distress Passcode</label>
+    <label for="distressPasscode">Distress Passcode  <small class="required">*</small></label>
     <input formControlName="distressPasscode" type="text" class="form-control" id="distressPasscode">
   </div>
   
   <button *ngIf="!editingUser" (click)="editUser()" type="button" class="btn btn-primary pointer" 
-    [disabled]="!editUserForm.valid">Edit User
+    [disabled]="!editUserForm.valid || editUserForm.value.organizationID === '-1' || editUserForm.value.userTypeID === '-1'">Edit User
   </button>
 
     <button *ngIf="editingUser" type="button" class="btn btn-primary" disabled>One Moment... <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>

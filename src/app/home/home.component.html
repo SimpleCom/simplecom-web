@@ -10,7 +10,7 @@
     <i *ngIf="dropdownDisplay" class="fa fa-minus"></i>
     &nbsp;Add List
   </button>
-
+  <hr />
   <div *ngIf="dropdownDisplay">
     <form [formGroup]="listForm" (ngSubmit)="saveNewList()">
       <div class="form-group">

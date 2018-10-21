@@ -102,6 +102,13 @@ export class CodesComponent implements OnInit {
     console.log(e.key);
   }
 
+  hasDuplicates(array){
+    return array.some((elm, idx) => {
+        return array.lastIndexOf(elm) > idx;
+    });
+
+  }
+
   setCodes() {
     if (this.secureKeyValue.length < 6 || this.fakeKeyValue.length < 6 || this.distressKeyValue.length < 6) {
       this.toastr.error('Invalid key. Secure key and fake key must be 6 characters.');
@@ -109,6 +116,10 @@ export class CodesComponent implements OnInit {
     }
     if (!this.secureKeyValue.match(/[a-z]/i) || !this.fakeKeyValue.match(/[a-z]/i) || !this.distressKeyValue.match(/[a-z]/i)) {
       this.toastr.error('Keys require numbers and letters.');
+      return;
+    }
+    if (this.hasDuplicates([this.secureKeyValue, this.fakeKeyValue, this.distressKeyValue])) {
+      this.toastr.error('All keys must be unique.');
       return;
     }
     this.settingCodes = true;

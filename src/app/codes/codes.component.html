@@ -1,5 +1,5 @@
 <h1>Set Codes</h1>
-
+<hr />
 <div *ngIf="loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
   <h1 class="text-center">Loading... <i class="fa fa-circle-o-notch fa-spin fa-1x"></i></h1>
 </div>
@@ -8,17 +8,17 @@
   <div class="row">
     <form (keydown)="showKeyCodeBorder($event)" class="form-horizontal">
       <div class="form-group">
-        <label for="Secure Key">Secure Key</label>
+        <label for="Secure Key">Secure Key  <small class="required">*</small></label>
         <input (click)="setKeyCodeInput(0)" type="text" name="Secure Key" id="Secure Key" class="form-control" placeholder="" value="{{ secureKeyValue }}" readonly>
       </div>
 
       <div class="form-group">
-        <label for="Fake Key">Fake Key</label>
+        <label for="Fake Key">Fake Key  <small class="required">*</small></label>
         <input (click)="setKeyCodeInput(1)" type="text" name="Fake Key" id="Fake Key" class="form-control" placeholder="" value="{{ fakeKeyValue }}" readonly>
       </div>
 
       <div class="form-group">
-        <label for="Fake Key">Distress Key</label>
+        <label for="Fake Key">Distress Key  <small class="required">*</small></label>
         <input (click)="setKeyCodeInput(2)" type="text" name="Distress Key" id="Distress Key" class="form-control" placeholder="" value="{{ distressKeyValue }}" readonly>
       </div>
 

@@ -1,5 +1,4 @@
 <h1>Organizations</h1>
-
 <div *ngIf="loading" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
   <h1 class="text-center">Loading... <i class="fa fa-circle-o-notch fa-spin fa-1x"></i></h1>
 </div>
@@ -10,7 +9,7 @@
     <i *ngIf="dropdownDisplay" class="fa fa-minus"></i>
     &nbsp;Add Organization
   </button>
-
+  <hr />
   <div *ngIf="dropdownDisplay">
     <form [formGroup]="organizationForm" (ngSubmit)="saveNewOrganization()">
       <div class="form-group">

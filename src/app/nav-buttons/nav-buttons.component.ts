@@ -23,6 +23,10 @@ export class NavButtonsComponent {
     });
   }
 
+  checkRoute(routerLink: string) {
+    return location.href.includes(routerLink)
+  }
+  
   
   logout() {
     this._authService.setToken('');
