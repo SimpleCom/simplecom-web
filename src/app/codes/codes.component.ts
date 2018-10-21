@@ -133,7 +133,7 @@ export class CodesComponent implements OnInit {
 
     this.codesService.AddNewCodes(codes)
       .then(() => this.toastr.success('Codes successfully set!', 'Codes set'))
-    );
+    
 
     this.settingCodes = false;
 
