@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr';
 
-import { HomeService } from './home.service';
+import { ListService } from './list.service';
 import { AuthService } from '../../common/auth.service';
 
 import { IList } from '../../interfaces/list.interface';
@@ -12,11 +12,11 @@ import { IJWT } from '../../interfaces/jwt.interface';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class ListComponent implements OnInit, OnDestroy {
   public userSubscription: Subscription;
   public listForm: FormGroup;
 
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public editingList: number = -1;
   public loading = false;
 
-  constructor(public toastr: ToastsManager, private fb: FormBuilder, private router: Router, private homeService: HomeService, private _auth: AuthService) {
+  constructor(public toastr: ToastsManager, private fb: FormBuilder, private router: Router, private listService: ListService, private _auth: AuthService) {
     this.userSubscription = this._auth.user.subscribe((user: IJWT) => {
       this.jwt = user;
     });
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getAllLists() {
     this.loading = true;
-    this.homeService.GetAllLists().then(res => {
+    this.listService.GetAllLists().then(res => {
       if (res && res.success) {
         this.lists = res.data;
       } else {
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   saveNewList(): void {
     this.addingList = true;
 
-    this.homeService.AddNewList(this.listForm.value.name)
+    this.listService.AddNewList(this.listForm.value.name)
       .then(() => {
         this.addingList = false;
         this.listForm.controls.name.patchValue('');
@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   deleteList(list) {
-    this.homeService.DeleteList(list.id)
+    this.listService.DeleteList(list.id)
       .then(() => {
         this.toastr.success('List successfully deleted!', 'It\'s gone');
         this.getAllLists();
@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   saveEditedList(list: IList) {
-    this.homeService.EditListName(list)
+    this.listService.EditListName(list)
       .then(() => this.toastr.success('List successfully edited!', 'List updated'))
       .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'))
       .then(non => this.editingList = -1

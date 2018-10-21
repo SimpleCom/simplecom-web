@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr';
 
 import { CodesService } from './codes.service';
 
@@ -54,6 +54,7 @@ export class CodesComponent implements OnInit {
   randomizeKeys() {
     this.secureKeyValue = this.generateKey();
     this.fakeKeyValue = this.generateKey();
+    this.distressKeyValue = this.generateKey();
   }
 
   setKeyCode(key) {
@@ -85,6 +86,7 @@ export class CodesComponent implements OnInit {
   clearCodes() {
     this.fakeKeyValue = '';
     this.secureKeyValue = '';
+    this.distressKeyValue = '';
   }
 
   generateKey() {

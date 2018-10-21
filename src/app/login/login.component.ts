@@ -2,7 +2,7 @@ import { Component, ViewContainerRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr';
 
 import { LoginService } from './login.service';
 import { AuthService } from '../../common/auth.service';
@@ -38,7 +38,7 @@ export class LoginComponent {
         console.log(response);
         this.authService.setToken(response.jwt);
         this.toastr.success('Login successful!', 'You\'re in!');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/users']);
       })
       .catch(e => { 
         this.toastr.error(`Error: ${e}`, 'Whoops!')

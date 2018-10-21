@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { UpdateListComponent } from './update-list/update-list.component';
 import { CodesComponent } from './codes/codes.component';
 import { HistoryComponent } from './history/history.component';
-import { HomeComponent } from './home/home.component';
+import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './404/404.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'codes', canActivate: [ AuthGuard ], component: CodesComponent },
   { path: 'history', canActivate: [ AuthGuard ], component: HistoryComponent },
-  { path: 'home', canActivate: [ AuthGuard ], component: HomeComponent },
+  { path: 'list', canActivate: [ AuthGuard ], component: ListComponent },
   { path: 'change-password', canActivate: [ AuthGuard ], component: ChangePasswordComponent },
   { path: 'register', canActivate: [ AuthGuard ], component: RegisterComponent  },
   { path: 'organizations', canActivate: [ AuthGuard ], component: OrganizationComponent  },

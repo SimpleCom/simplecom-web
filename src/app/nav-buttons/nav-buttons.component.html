@@ -3,7 +3,7 @@
     <button [ngClass]="{'active': checkRoute('users')}" routerLink="/users" class="btn btn-block btn-outline-dark pointer" *ngIf="isAdmin">Users</button>
     <button [ngClass]="{'active': checkRoute('organizations')}" routerLink="/organizations" class="btn btn-block btn-outline-dark pointer" *ngIf="isAdmin">Organizations</button>
     <hr />
-    <button [ngClass]="{'active': checkRoute('home')}" routerLink="/home" class="btn btn-block btn-outline-dark pointer">Lists</button>
+    <button [ngClass]="{'active': checkRoute('list')}" routerLink="/list" class="btn btn-block btn-outline-dark pointer">Lists</button>
     <button [ngClass]="{'active': checkRoute('codes')}" routerLink="/codes" class="btn btn-block btn-outline-dark pointer">Set Codes</button>
     <button [ngClass]="{'active': checkRoute('change-password')}" routerLink="/change-password" class="btn btn-block btn-outline-dark pointer">Change Password</button>
     <button (click)="logout()" class="btn btn-block btn-outline-dark pointer mb-5">Logout</button>

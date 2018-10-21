@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr';
 
 import { UpdateListService } from "./update-list.service";
 import { AuthService } from '../../common/auth.service';

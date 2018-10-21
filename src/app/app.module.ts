@@ -4,14 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RouteModule } from './route.module';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastModule } from 'ng2-toastr';
 
 import { AppComponent } from './app.component';
 
 import { UpdateListComponent } from './update-list/update-list.component';
 import { CodesComponent } from './codes/codes.component';
 import { HistoryComponent } from './history/history.component';
-import { HomeComponent } from './home/home.component';
+import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './404/404.component';
@@ -29,7 +29,7 @@ import { AuthGuard } from '../common/auth-guard.service';
 import { JWTService } from '../common/jwt.service';
 import { RestService } from '../common/rest.service';
 import { HttpModule } from '@angular/http';
-import { HomeService } from './home/home.service';
+import { ListService } from './list/list.service';
 import { LoginService } from './login/login.service';
 import { RegisterService } from './register/register.service';
 import { UploaderService } from './uploader/uploader.service';
@@ -43,7 +43,7 @@ import { EditUserService } from './edit-user/edit-user.service';
     UpdateListComponent,
     CodesComponent,
     HistoryComponent,
-    HomeComponent,
+    ListComponent,
     LoginComponent,
     RegisterComponent,
     NotFoundComponent,
@@ -69,7 +69,7 @@ import { EditUserService } from './edit-user/edit-user.service';
     AppService,
     JWTService,
     RestService,
-    HomeService,
+    ListService,
     LoginService,
     RegisterService,
     UploaderService,

@@ -5,7 +5,7 @@ import { IListMember } from "../../interfaces/list-member.interface";
 import {IList} from "../../interfaces/list.interface";
 
 @Injectable()
-export class HomeService {
+export class ListService {
   constructor(private _http: RestService) {}
 
     /**

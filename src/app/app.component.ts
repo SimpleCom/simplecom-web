@@ -1,6 +1,6 @@
 import { Component, ViewContainerRef } from '@angular/core';
 
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr';
 import { AuthService } from '../common/auth.service';
 import { IJWT } from '../interfaces/jwt.interface';
 
