@@ -17,14 +17,14 @@ export class NavButtonsComponent {
     this._authService.user.subscribe(user => {
       this.user = user;
       // user id 2 = admin
-      if (this.user.userTypeID === 2) {
+      if (this.user && this.user.userTypeID === 2) {
         this.isAdmin = true;
       }
     });
   }
 
   checkRoute(routerLink: string) {
-    return location.href.includes(routerLink)
+    return location.href.includes(routerLink);
   }
   
   
