@@ -40,10 +40,6 @@ export class LoginComponent {
         this.toastr.success('Login successful!', 'You\'re in!');
         this.router.navigate(['/users']);
       })
-      .catch(e => { 
-        this.toastr.error(`Error: ${e}`, 'Whoops!')
-        this.loggingIn = false
-      }
-    );
+
   }
 }

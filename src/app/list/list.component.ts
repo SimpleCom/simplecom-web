@@ -46,7 +46,7 @@ export class ListComponent implements OnInit, OnDestroy {
       if (res && res.success) {
         this.lists = res.data;
       } else {
-        // TODO: error handling
+        this.toastr.error('Unable to get lists.')
       }
       this.loading = false;
     });
@@ -69,7 +69,7 @@ export class ListComponent implements OnInit, OnDestroy {
         this.listForm.controls.name.patchValue('');
         this.toastr.success('List successfully created!', 'List created');
         this.getAllLists();
-      }).catch(e => this.toastr.error(`Error ${e}`, 'Whoops!'));
+      });
   }
 
   viewListDetails(list) {
@@ -81,7 +81,7 @@ export class ListComponent implements OnInit, OnDestroy {
       .then(() => {
         this.toastr.success('List successfully deleted!', 'It\'s gone');
         this.getAllLists();
-      }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'));
+      });
   }
 
   editList(list: IList) {
@@ -91,7 +91,6 @@ export class ListComponent implements OnInit, OnDestroy {
   saveEditedList(list: IList) {
     this.listService.EditListName(list)
       .then(() => this.toastr.success('List successfully edited!', 'List updated'))
-      .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'))
       .then(non => this.editingList = -1
     );
   }

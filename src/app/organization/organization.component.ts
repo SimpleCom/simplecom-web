@@ -33,7 +33,7 @@ export class OrganizationComponent implements OnInit {
       if (res && res.success) {
         this.organizations = res.data;
       } else {
-        // TODO: add error handling
+        this._toastr.error('Unable to get all organizations.')
       }
       this.loading = false;
     });
@@ -52,7 +52,7 @@ export class OrganizationComponent implements OnInit {
         this.organizationForm.controls.name.patchValue('');
         this._toastr.success('List successfully created!', 'List created');
         this.getAllOrganizations();
-      }).catch(e => this._toastr.error(`Error ${e}`, 'Whoops!'));
+      });
   }
 
   editOrganization(organization: IOrganization) {
@@ -63,7 +63,6 @@ export class OrganizationComponent implements OnInit {
   saveEditedOrganization(organization: IOrganization) {
     this._organizationService.updateOrganization(organization)
       .then(() => this._toastr.success('List successfully edited!', 'List updated'))
-      .catch(e => this._toastr.error(`Error: ${e}`, 'Whoops!'))
       .then(non => this.editingOrg = -1
     );
   }
@@ -75,9 +74,9 @@ export class OrganizationComponent implements OnInit {
           this._toastr.success('List successfully deleted!', 'It\'s gone');
           this.getAllOrganizations();
         } else {
-          // TODO: add error handling
+          this._toastr.error('Unable to delete list.')
         }
        
-      }).catch(e => this._toastr.error(`Error: ${e}`, 'Whoops!'));
+      });
   }
 }

@@ -44,7 +44,7 @@ export class RegisterComponent {
         this.registerForm.controls.password.patchValue('');
         this.registerForm.controls.repassword.patchValue('');
         this.registering = false;
-      }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'))
+      });
   }
 
   inspectForms() {

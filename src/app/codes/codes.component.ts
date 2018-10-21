@@ -37,7 +37,7 @@ export class CodesComponent implements OnInit {
           this.distressKeyValue = res.data.distressPasscode;
         }
       } else {
-        // TODO: error handling
+        this.toastr.error('Unable to get codes.')
       }
       this.loading = false;
     });
@@ -133,7 +133,6 @@ export class CodesComponent implements OnInit {
 
     this.codesService.AddNewCodes(codes)
       .then(() => this.toastr.success('Codes successfully set!', 'Codes set'))
-      .catch(e => this.toastr.success(`Error: ${e}`, 'Whoops!')
     );
 
     this.settingCodes = false;

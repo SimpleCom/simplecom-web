@@ -35,16 +35,14 @@ export class UploaderComponent implements OnInit {
   }
 
   UploadFile() {
-    // TODO: add user
+ 
     this._uploaderService.UploadFile(this.organization.id)
       .then(res => {
         console.log(res);
         this._toast.success('Upload Succesful!', 'Success!');
         this._uploaderService.files = null;
-      }).catch(err => {
-        console.log(err);
-        // this._toast.error('Upload Failed.', 'Error!');
-      }).then(non => this.hasFile = false);
+        this.hasFile = false
+      })
   }
 
 }

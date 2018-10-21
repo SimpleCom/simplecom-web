@@ -46,7 +46,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         this.getOrganizations();
         this.getUserTypes();
       } else {
-        // TODO: error handling
+        this._toastr.error('Unable to get user ID.')
       }
     });
   }
@@ -60,7 +60,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       if (res && res.success) {
         this.organizations = res.data;
       } else {
-        // TODO: error handling
+        this._toastr.error('Unable to get organizations.')
       }
     });
   }
@@ -70,7 +70,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       if (res && res.success) {
         this.userTypes = res.data;
       } else {
-        // TODO: error handling
+        this._toastr.error('Unalbe to get user types.')
       }
     });
   }
@@ -81,7 +81,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         this.user = res.data;
         this.setUserForm();
       } else {
-        // TODO: error handling
+        this._toastr.error('Unable to get user ID.')
       }
     });
   }
@@ -104,7 +104,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       if (res && res.success) {
         this._toastr.success('Succesfully updated user');
       } else {
-        // TODO: error handling
+        this._toastr.error('Unable to update user')
       }
       this.editingUser = false;
     });

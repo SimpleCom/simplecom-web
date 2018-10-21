@@ -30,12 +30,9 @@ export class UpdateListComponent implements OnInit {
   ngOnInit() {
     this._listService.GetListDetails(this.route.snapshot.params['id'])
      .then(response => this.listDetails = response)
-     .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!'));
 
     this._listService.GetListContacts(this.route.snapshot.params['id'])
      .then(response => this.contacts = response.contacts)
-     .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
-    );
   }
 
   saveNewContact() {
@@ -52,10 +49,8 @@ export class UpdateListComponent implements OnInit {
           this.listForm.controls.name.patchValue('');
           this.listForm.controls.email.patchValue('');
           this.toastr.success('Saved new contact');
-          }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
-        );
-      }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
-    );
+          });
+      });
   }
 
   deleteContact(contactID) {
@@ -63,10 +58,7 @@ export class UpdateListComponent implements OnInit {
       .then(response => {
         this._listService.GetListContacts(this.route.snapshot.params['id'])
          .then(response => this.contacts = response.contacts)
-         .catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
-        );
-      }).catch(e => this.toastr.error(`Error: ${e}`, 'Whoops!')
-    );
+      })
   }
 
   editContact(contact: IContact) {
@@ -76,7 +68,6 @@ export class UpdateListComponent implements OnInit {
   saveContact(contact: IContact) {
     this._listService.EditContact(this.route.snapshot.params['id'], contact)
       .then(() => this.toastr.success('Contact successfully edited!', 'Contact edited'))
-      .catch(e => this.toastr.success(`Error: ${e}`, 'Whoops!'))
       .then(non => this.editingContact = -1
     );
   }

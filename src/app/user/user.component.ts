@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
       if (res && res.success) {
         this.users = res.data;
       } else {
-        // TODO: add error handling
+        this._toast.error('Unable to get all users.')
       }
     });
   }
@@ -37,8 +37,7 @@ export class UserComponent implements OnInit {
       if (res && res.success) {
         this.getAllUsers();
       } else {
-        // TODO: add error handling
-      }
+        this._toast.error('Unable to deactivate user.')      }
     });
   }
 
@@ -47,7 +46,7 @@ export class UserComponent implements OnInit {
       if (res && res.success) {
         this.getAllUsers();
       } else {
-        // TODO: add error handling
+        this._toast.error('Unable to reactivate user.')
       }
     });
   }
